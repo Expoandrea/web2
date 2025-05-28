@@ -1,0 +1,88 @@
+<div class="container-beige">
+    <div class="nav-container">
+        <div class="home-card" style="background-color: #90D5FE;">
+            <a href="homepagetecnico">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <a href="proposte_tecnico">
+            <h3 style="color: #0D99FF; margin-left: 10px;">> Proposte inviate</h3>
+        </a>
+        
+        <h3 style="color: #0D99FF; margin-left: 10px;">> Proposta #${proposta.codice}</h3> 
+    </div>
+    <div class="container-proposta">
+        <div class="container-info-proposta">
+            <h1 class="hi-text no-wrap">Proposta relativa a richiesta 
+             <#if (proposta.getStatoProposta() == "ACCETTATO"||proposta.getStatoProposta() == "IN_ATTESA" || proposta.getStatoProposta() == "ORDINATA")>
+                <a href="detailrichiesta_tecnico?n=${proposta.richiestaOrdine.key}&source=proposte" style="text-decoration: underline; display: inline;">
+                <#else>
+        <a href="detailrichiesta_tecnico?n=${proposta.richiestaOrdine.key}&source=richieste" style="text-decoration: underline; display: inline;">
+                    </#if>
+                    #${proposta.richiestaOrdine.codiceRichiesta}
+                </a> - ${proposta.richiestaOrdine.utente.username}
+            </h1>
+            <div class="badge-stato" data-state="${proposta.getStatoProposta()}">${proposta.getStatoProposta()}</div>
+        </div>
+        <div class="container-skyblue-proposta shadow-lg">
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label>Nome produttore:</label>
+                    <div class="grey-row">${proposta.produttore}</div>
+                </div>
+            </div>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label>Nome prodotto:</label>
+                    <div class="grey-row">${proposta.prodotto}</div>
+                </div>
+            </div>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label>Codice prodotto:</label>
+                    <div class="grey-row">${proposta.codiceProdotto}</div>
+                </div>
+            </div>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label>Prezzo:</label>
+                    <div class="grey-row">€${proposta.prezzo}</div>
+                </div>
+            </div>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label>URL:</label>
+                    <div class="grey-row"><a href="${proposta.url}">Visualizza</a></div>
+                </div>
+            </div>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label>Note:</label>
+                    <div class="grey-row"><i>${proposta.note!'Nessuna nota inserita'}</i></div>
+                </div>
+            </div>
+            <#if proposta.getStatoProposta() == "RIFIUTATO">            
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label>Motivazione del rifiuto:</label>
+                    <div class="grey-row" style="background-color: #FFC7C2;">${proposta.motivazione}</div>
+                </div>
+            </div>
+            </#if>
+            <br>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico" style="justify-content: center;">
+                    
+                    <#if proposta.getStatoProposta() == "ACCETTATO">
+                    <form action="detailproposta_tecnico?n=${proposta.key}" method="post">
+                        <input type="hidden" name="action" value="inviaOrdine">
+                        <button type="submit" class="btn-verde shadow-lg">Invia ordine</button>
+                    </form>
+                </#if>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+<script src="scripts/proposte_tecnico.js"></script>

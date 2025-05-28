@@ -1,0 +1,30 @@
+<div class="container-beige">
+    <div class="nav-container">
+        <div class="home-card" style="background-color: #FFC7C2;">
+            <a href="homepagetecnico">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <h3 style="color: #FF867B; margin-left: 10px;">> Nuove Richieste</h3> 
+    </div>
+    <br>
+    <div class="rows-container">
+        <#if (richieste?size>0)>
+        <!-- TODO: Rendere dinamiche le righe mostrate -->
+        <#list richieste as richiesta>
+        <a href="richiesta_inattesa?n=${richiesta.key}">
+        <div class="card-row-pink">
+             <p class="card-row-text">Nuova richiesta da prendere in carico:</p>
+            <div class="card-row-content">
+                <p class="card-row-text">${richiesta.codiceRichiesta}</p>
+            </div>
+             <div class="card-row-content">
+                <p class="card-row-text">${richiesta.categoria.nome}</p>
+            </div>
+        </div>
+            </a>
+        </#list>
+        </#if>
+        
+    </div>
+</div>  

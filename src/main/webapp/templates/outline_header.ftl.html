@@ -1,0 +1,12 @@
+<div class="header-container" id="header">
+    <div class="sixteen columns">Web Market
+        <div class="subtitle">L'eCommerce facile per il tuo ente</div>
+    </div>
+    <div class="logininfo">
+        <#if logininfo??>
+        <a href="logout?referrer=${thispageurl?url}" style="color: black;"><img class="tiny-logo" src="images/logout.svg" alt="Log Out" /></a>
+        <#else>
+        <a href="login?referrer=${thispageurl?url}">[login]</a>
+        </#if>
+    </div>
+</div>

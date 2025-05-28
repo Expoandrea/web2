@@ -1,0 +1,26 @@
+<div class="container-beige">
+    <div class="title-container">
+        <a href="homepageadmin">
+        <div class="logo shadow-lg">
+            <img src="images/home-svg.svg" alt="Home" />
+        </div>
+         </a>
+        <h2 class="title-dark-brown">Categorie</h2>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search...">
+        </div>
+    </div>
+    <#if (categorie?size>0)>
+    <div class="categories">
+        <a href="aggiungicategoria">
+        <div class="lblue-button width150px height61px span-1 shadow-lg">Aggiungi</div>
+        </a>
+        <#list categorie as categoria>
+        <a href="categoria?n=${categoria.key}">
+        <div class="purple-button width150px category-item height61px span-1 shadow-lg">${categoria.nome}</div>
+        </a>
+        </#list>
+    </div>
+    </#if>
+</div>
+ <script type="module" src="scripts/gestione_categorie.js"></script>

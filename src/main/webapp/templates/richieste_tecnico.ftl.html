@@ -1,0 +1,73 @@
+<div class="container-beige">
+    <div class="nav-container">
+        <div class="home-card" style="background-color: #5D54BE;">
+            <a href="homepagetecnico">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <h3 style="color: #5D54BE; margin-left: 10px;">> Richieste non evase</h3> 
+    </div>
+    <#if (richieste?size>0)>
+    <div class="search-container">
+
+        <input type="text" placeholder="Cerca tramite codice..." class="search-input" id="search-input">
+    </div>
+    <div class="filter-container">
+        <p class="filter-text">Filtra per categoria:</p>
+        <select name="category" id="category" class="standard-select">
+            <option value="tutte">Tutte</option>
+            <#list categorie as categoria>
+                <#if categoria.nome != "root">
+                    <option value="${categoria.nome}">${categoria.nome}</option>
+                </#if>
+            </#list>
+        </select>
+    </div>
+    
+
+    <!-- Sezione che mostra le richieste non evase -->
+
+    <div class="rows-container">
+        <div class="card-row-transparent">
+            <div class="card-row-content">
+                <p class="card-row-text">Codice</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Utente</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Categoria</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Data</p>
+            </div>
+        </div>
+        <!-- TODO: Rendere dinamiche le righe mostrate -->
+        <#list richieste as richiesta>
+
+        <a href="detailrichiesta_tecnico?n=${richiesta.key}&source=richieste" class="a-cards">
+            <div class="card-row-purple" data-codice="${richiesta.codiceRichiesta}" data-categoria="${richiesta.categoria.nome}">
+                <div class="card-row-content">
+                    <p class="card-row-text">${richiesta.codiceRichiesta}</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">${richiesta.utente.username}</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">${richiesta.categoria.nome}</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">${richiesta.data}</p>
+                </div>
+                    
+            </div>
+            </a>
+       
+        </#list>
+    </div>
+    <#else>
+        <h1 class="hi-text" style="text-align: left;">Non ci sono richieste non ancora evase</h1>
+    </#if>
+</div>
+
+<script src="scripts/richieste_tecnico.js"></script>

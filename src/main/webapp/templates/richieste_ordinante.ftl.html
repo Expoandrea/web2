@@ -1,0 +1,59 @@
+<div class="container-beige">
+    <div class="nav-container flex items-center space-x-2">
+        <div class="home-card flex justify-center items-center" style="background-color:#90D5FE">
+            <a href="homepageordinante">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <h3 style="color: #0D99FF; margin-left: 10px;">> Richieste Effettuate</h3> 
+    </div>
+    <!-- Sezione per la ricerca e il filtro -->
+    <div class="search-container">
+        <input type="text" placeholder="Cerca..." id="search" class="search-input">
+    
+    </div>
+    <div class="filter-container">
+        <p class="filter-text">Filtra per stato:</p>
+        <select name="status" id="status" class="filter-select">
+            <option value="tutti">Tutti</option>
+            <option value="PRESA_IN_CARICO">In Carico</option>
+            <option value="RISOLTA">Risolta</option>
+            <option value="IN_ATTESA">In attesa</option>
+            <option value="ORDINATA">Ordinata</option>
+        </select>
+    </div>
+
+    <!-- Sezione che mostra le richieste effettuate -->
+     
+        <#if (richieste?size>0)>
+
+    <div class="rows-container">
+
+        <#list richieste as richiesta>
+<a href="dettaglio_richiesta_ord?n=${richiesta.key}" class="a-cards">
+        <div class="richiesta-container card-row-skyblue" data-stato="${richiesta.getStato()}" data-codice="${richiesta.codiceRichiesta}">
+            
+                <div class="card-row-content">
+                    <p class="card-row-text">Codice: ${richiesta.codiceRichiesta}</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">Categoria: ${richiesta.categoria.nome}</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">Data: ${richiesta.data} </p>
+                </div>
+                <div class="card-row-content" data-state="${richiesta.getStato()}">
+                    <p class="card-row-text">${richiesta.getStato()} </p>
+                </div>
+           
+        </div>
+</a>
+        </#list>
+        
+        </div>
+        <#else>
+        <p id="no-results" style="display:none; color: rgb(68, 68, 66);">Nessun risultato trovato.</p>
+
+       </#if>
+       <script src="scripts/richieste_ord.js"></script>
+</div>

@@ -1,0 +1,76 @@
+<div class="container-beige">
+    <div class="nav-container">
+        <div class="home-card" style="background-color: #5D54BE;">
+            <a href="homepagetecnico">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <a href="richieste_tecnico">
+            <h3 style="color: #5D54BE; margin-left: 10px;">> Richieste non evase</h3>
+        </a>
+        <a href="detailrichiesta_tecnico?n=${richiesta.key}&source=richieste">
+            <h3 style="color: #5D54BE; margin-left: 10px;">> Richiesta #${richiesta.codiceRichiesta}</h3>
+        </a>
+        <h3 style="color: #5D54BE; margin-left: 10px;">> Invio proposta</h3>
+    </div>
+    <div class="container-proposta">
+        <div class="container-info-proposta">
+            <h1 class="hi-text">#${richiesta.codiceRichiesta} - ${richiesta.utente.username}</h1>
+        </div>
+        <div class="container-purple-proposta" style="background-color: #5D54BE;">
+            <form action="invioproposta?n=${richiesta.key}" method="post">
+                <input type="hidden" name="action" value="invioProposta">
+                
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="produttore">Nome produttore:</label>
+                        <input type="text" id="produttore" name="produttore" class="textfield-grey" placeholder="Inserisci nome produttore">
+                    </div>
+                </div>
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="prodotto">Nome prodotto:</label>
+                        <input type="text" id="prodotto" name="prodotto" class="textfield-grey" placeholder="Inserisci nome prodotto">
+                    </div>
+                </div>
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="codiceProdotto">Codice prodotto:</label>
+                        <input type="text" id="codiceProdotto" name="codiceProdotto" class="textfield-grey" placeholder="Inserisci codice prodotto">
+                    </div>
+                </div>
+                <#if (errorMessage)??>
+                        <span id="prezzo-error" class="error-message" style="color: red;">${errorMessage}</span>
+                    </#if>
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="prezzo">Prezzo:</label>
+                        <input type="text" id="prezzo" name="prezzo" class="textfield-grey" placeholder="Inserisci prezzo">
+                        
+                    </div>
+                </div>
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="url">URL:</label>
+                        <input type="text" id="url" name="url" class="textfield-grey" placeholder="Inserisci URL">
+                    </div>
+                </div>
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico">
+                        <label for="note">Note:</label>
+                        <input type="text" id="note" name="note" class="textfield-grey" placeholder="Inserisci note">
+                    </div>
+                </div>
+                <br>
+                <div class="row-tecnico">
+                    <div class="form-group-tecnico" style="justify-content: center;">
+                        <button id="btn-invio" type="submit" class="btn-verde hidden" name="btn-invio">Invia proposta</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+</div>
+
+<script src="scripts/invio_proposta.js"></script>

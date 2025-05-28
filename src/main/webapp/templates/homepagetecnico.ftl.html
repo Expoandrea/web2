@@ -1,0 +1,59 @@
+<div class="container-beige mx-auto p-4">
+    <h1 class="hi-text" style="text-align: left;">Ciao, ${user.username}</h1>
+    <br>
+
+    <!-- Messaggio di successo per il cambio password -->
+    <div id="success-message" class="success-msg"></div>
+
+    <!-- Sezione Impostazioni Profilo -->
+    <div class="notifications-container flex justify-end mt-4">
+        <div class="card-notifiche min-w-[180px] h-15">
+            <a href="cambio_password" class=" flex items-center ml-2 space-x-2">
+           
+                <img src="images/impostazioni-svg.svg" alt="icona profilo" class="img-prof"> <p class="card-text text-gray-700 font-medium whitespace-nowrap">Impostazioni</p>
+                </a>
+        </div>
+    </div>
+    
+    <div class="three-buttons-container">
+        <div class="card-purple relative p-4 flex flex-col items-center" style="position: relative;">
+            <a href="richieste_tecnico">
+                <img src="images/richieste-svg.svg" alt="icona richieste non evase" class="icon h-16 w-16 mx-auto">
+                <p class="card-title-light">Richieste non evase</p>
+            </a>
+            <#if richieste_prese_in_carico?? && richieste_prese_in_carico == true>
+                <span  class="pallino-rosso"></span>
+                </#if>
+        </div>
+        <div class="card-skyblue relative p-4 flex flex-col items-center" style="position: relative;">
+            <a href="proposte_tecnico">
+                <img src="images/proposte-svg.svg" alt="icona proposte inviate" class="icon icon h-16 w-16 mx-auto">
+                <p class="card-title-dark">Proposte inviate</p>
+            </a>
+            <#if proposte?? && proposte == true>
+                <span  class="pallino-rosso"></span>
+                </#if>
+        </div>
+        <div class="card-orange relative p-4 flex flex-col items-center" style="position: relative;">
+            <a href="storico_tecnico">
+                <img src="images/storico-svg.svg" alt="icona storico" class="icon icon h-16 w-16 mx-auto">
+                <p class="card-title-light">Storico ordini</p>
+            </a>
+            <#if ordini?? && ordini == true>
+                <span  class="pallino-rosso"></span>
+                </#if>
+        </div>
+    </div>
+    <#if richieste_in_attesa?? && richieste_in_attesa == true>
+    <div class="notifications-container flex justify-end mt-4">
+        <div class="card-notif-pulse flex justify-center min-w-[200px] h-15">
+            <a href="notifiche_tecnico" class="a-cards p-4 flex flex-row items-center ml-2 mr-2 space-x-2" style="border-radius: 20px;">
+                <img src="images/notifications-svg.svg" alt="icona notifiche" class="img-notif">
+                <p class="card-text text-gray-700 font-medium whitespace-nowrap">Nuove Richieste</p>
+            </a>
+        </div>
+    </div>
+    </#if>
+</div>
+
+<script src="scripts/homepage.js"></script>

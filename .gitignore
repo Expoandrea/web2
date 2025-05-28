@@ -1,0 +1,20 @@
+# Directory build
+target/
+
+# IDE-specific files
+.idea/
+*.iml
+
+# Maven wrapper files
+.mvn/
+
+# OS-specific files
+.DS_Store
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# VSCode
+.vscode/

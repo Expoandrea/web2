@@ -1,0 +1,35 @@
+
+<div>
+            <p>Caratteristiche di ${categoria.nome}:</p>
+            <form action="gestisci_caratteristiche?n=${categoria.key}" method="post" >
+        <input type="hidden" name="action" value="createCaratteristica">
+            <button type="button" id="add-caratteristica" class="orange-button margin-bottom">Aggiungi</button>
+            <div id="caratteristiche-container">
+                
+            </div>
+            </form>
+
+            <div class="categories">
+                <#if (caratteristiche?size>0)>
+                <#list caratteristiche as car>
+                <div class="light-orange-button width150px category-item height61px shadow-lg">${car.nome}  
+                   <form method="POST" action="gestisci_caratteristiche?n=${categoria.key}">
+                        <input type="hidden" name="action" value="deleteCaratteristica">
+                        <input type="hidden" name="caratteristicaId" value="${car.key}">
+                        <input type="submit" style="background-color: #94a3b8;" value="Elimina">
+                    </form>
+
+                </div>
+                </#list>
+                </#if>
+            </div>
+            <div class="form-buttons">
+            <a href="categoria?n=${categoria.key}">
+           
+            <div class="orange-button">FATTO</div>
+            </a>
+        </div>
+        </div>
+
+ <script type="module" src="scripts/modifica_caratteristiche.js"></script>
+

@@ -1,0 +1,47 @@
+<div class="container-beige">
+    <div class="nav-container">
+        <div class="home-card" style="background-color: #F67956;">
+            <a href="homepagetecnico">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <h3 style="color: #F67956; margin-left: 10px;">> Storico ordini</h3> 
+    </div>
+    <div class="search-container">
+        <input type="text" placeholder="Cerca tramite codice..." id="search" class="search-input">
+       
+    </div>
+    <div class="filter-container">
+        <p class="filter-text">Filtra per stato:</p>
+        <select name="stato" id="stato" class="standard-select">
+            <option value="tutti">Tutti</option>
+            <option value="ACCETTATO">Accettato</option>
+            <option value="IN_ATTESA">In attesa</option>
+            <option value="RESPINTO_NON_CONFORME">Respinto perché non conforme</option>
+            <option value="RESPINTO_NON_FUNZIONANTE">Respinto perché non funzionante</option>
+            <option value="RIFIUTATO">Rifiutato</option>
+        </select>
+    </div>
+    <div class="rows-container">
+
+        <#list ordini as ordine>
+ <a href="detailstorico_tecnico?n=${ordine.key}" class="a-cards">
+
+        <div class="card-row-orange ordine-container" data-stato="${ordine.stato}" data-codice="${ordine.proposta.getCodice()}" >
+                <div class="card-row-content">
+                    <p class="card-row-text"><b>Proposta: </b>${ordine.proposta.codice}</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text"><b>Utente: </b>${ordine.proposta.richiestaOrdine.utente.username}</p>
+                </div>
+                <div class="card-row-content" data-state="${ordine.getStato()}">
+                    <p class="card-row-text">${ordine.stato}</p>
+                </div>
+           
+        </div>
+     </a>
+        </#list>
+    </div>
+</div>
+
+<script src="scripts/storico_tecnico.js"></script>

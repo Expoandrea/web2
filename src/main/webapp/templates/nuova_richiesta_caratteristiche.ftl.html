@@ -1,0 +1,53 @@
+    <!-- Form delle Caratteristiche -->
+    <form method="POST" action="nuova_richiesta_caratteristiche?n=${categoria.key}" id="characteristics-form" class="characteristics-container orange space-y-4">
+        <input type="hidden" name="action" value="createRichiesta">
+   
+        <h4 class="title-black">Caratteristiche</h4>
+        <p class="margin-10">Se hai preferenze, inserisci i valori delle caratteristiche, altrimenti se ti è indifferente spunta la checkbox</p>
+
+        <#if (caratteristiche?size>0)>
+        <#list caratteristiche as caratteristica>
+        <div class="characteristics-row flex flex-wrap items-center space-y-2 md:space-y-0 md:flex-row md:space-x-4">
+            <label for="caratteristica${caratteristica.key}" class="margin-10 w-full md:w-1/3">${caratteristica.nome}:</label>
+            <input type="text" id="caratteristica${caratteristica.key}" name="caratteristica${caratteristica.key}" placeholder="Inserisci ${caratteristica.nome}" class="flex-1 border rounded-extra-large p-2">
+            <!-- <input type="checkbox" id="caratteristica${caratteristica.key}-indifferente" name="${caratteristica.key}-indifferente"> Indifferente -->
+            <!-- Checkbox e dicitura Indifferente -->
+            <div class="flex items-center space-x-2">
+                <input type="checkbox" id="caratteristica${caratteristica.key}-indifferente" name="${caratteristica.key}-indifferente" class="h-5 w-5">
+                <label for="caratteristica${caratteristica.key}-indifferente" class="text-sm">Indifferente</label>
+            </div>
+ 
+        </div>
+    </#list>
+    <#else>
+    <div class="characteristics-row margin-10">
+                    <p>Non ci sono caratteristiche associate alla categoria scelta</p>
+
+        </div>
+        </#if>
+
+
+        <div class="characteristics-row">
+            <label for="note" class="margin-10">Note:</label>
+            <textarea id="note" name="note" placeholder="Inserisci eventuali note" class="w-full border rounded-extra-large p-2"></textarea>
+        </div>
+        
+        <!-- Pulsante per Inviare la Richiesta -->
+          <div class="form-buttons flex justify-between">
+            <a href="homepageordinante">
+            <div class="purple-button bg-purple-500 text-white py-2 px-4 rounded-extra-large shadow-lg">INDIETRO</div>
+            </a>
+            <button type="submit" class="orange-button bg-orange-500 text-white py-2 px-4 rounded-extra-large shadow-lg">AVANTI</button>
+        </div>
+    </form>
+    
+    <!---
+    <div id="custom-alert" class="custom-alert">
+        <div class="custom-alert-content">
+            <span class="close-btn" onclick="closeAlert()">&times;</span>
+            <h2>Richiesta Inviata!</h2>
+            <p>La tua richiesta è stata inoltrata con successo!</p>
+        </div>
+    </div>
+    <script src="scripts/nuova_ric_car.js"></script>
+--!>

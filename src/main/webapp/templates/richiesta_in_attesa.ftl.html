@@ -1,0 +1,49 @@
+<div class="container-beige">
+    <div class="nav-container">
+        <div class="home-card" style="background-color: #FFC7C2;">
+            <a href="homepagetecnico">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <a href="notifiche_tecnico">
+            <h3 style="color: #FF867B; margin-left: 10px;">> Nuove Richieste</h3>
+        </a>
+        <h3 style="color: #FF867B; margin-left: 10px;">> Richiesta #${richiesta.codiceRichiesta}</h3>
+    </div>
+    <h1 class="hi-text" style="text-align: left;">#${richiesta.codiceRichiesta} - ${richiesta.utente.username}</h1>
+    <br>
+    <form action="richiesta_inattesa?n=${richiesta.key}" method="post" class="form-container-orange shadow-lg">
+        <input type="hidden" name="action" value="prendiInCarico">
+    <div class="container-richieste-storico p-4 w-full">
+        <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label>Categoria:</label>
+                <div class="purple-richiesta-storico" style="width: auto;">${richiesta.categoria.nome}</div>
+            </div>
+        </div>
+        <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label>Caratteristiche:</label>
+                <#if (caratteristiche?size>0)>
+                
+                <div class="skyblue-richiesta-storico break-words">
+                    <#list caratteristiche as car>
+                    <b>${car.caratteristica.nome}:</b> ${car.valore} <br>
+                    </#list>
+                </div>
+                
+                </#if>
+            </div>
+        </div>
+        <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label>Note:</label>
+                <div class="skyblue-richiesta-storico break-words">${richiesta.note!'Nessuna nota inserita'}</div>
+            </div>
+        </div>
+        <div class="row-tecnico">
+            <button type="submit" class="btn-blu shadow-lg">Prendi in carico</button>
+        </div>
+    </div>
+    </form>
+</div>

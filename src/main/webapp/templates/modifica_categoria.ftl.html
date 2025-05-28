@@ -1,0 +1,21 @@
+<div class="container-beige">
+    <h2 class="title-dark-brown">
+            Modifica la categoria
+    </h2>
+    <form action="modificacategoria?n=${categoria.key}" method="post" class="form-container-orange">
+    <input type="hidden" name="action" value="updateCategory">
+        <div class="form-group">
+            <label for="category-name">Nome:</label>
+            <input type="text" id="category-name" name="category-name" value="${categoria.nome}" required>
+        </div>
+     
+        <div class="form-buttons">
+            <a href="categoria?n=${categoria.key}">
+            <button type="button" class="purple-button">INDIETRO</button>
+            </a>
+            <button type="submit" class="orange-button">SALVA</button>
+        </div>
+    </form>
+</div>
+
+

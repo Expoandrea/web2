@@ -1,0 +1,46 @@
+<div class="container-beige-not-centered">
+    <div class="breadcrumb">
+        <a href="homepageadmin"><div class="logo"><img src="images/home-svg.svg" alt="Home" /></div></a>
+        <a href="gestionecategorie"><span> > Categorie</span></a>
+    </div>
+    <div class="category-details">
+        <h2 class="title-dark-brown">${categoria.nome}</h2>
+        <div class="buttons-container">
+            <a href="modificacategoria?n=${categoria.key}">
+            <div class="lblue-button width150px">Modifica</div>
+            </a>
+            <a href="gestisci_caratteristiche?n=${categoria.key}">
+            <div class="lblue-button width150px">Caratteristiche</div>
+            </a>
+            <button class="icon-button" id="delete-button" data-key="${categoria.key}">
+                <img src="images/trashcan-svg.svg" alt="Delete" />
+            </button>
+        </div>
+        <div class="parent-category">
+            <strong>Categoria padre:</strong>
+             <#if (padre??)>
+            <a href="categoria?n=${padre.key}">
+            <div class="purple-button width150px shadow-lg">${padre.nome}</div>
+            </a>
+             <#else>
+            <span>Questa categoria non deriva da nessun'altra</span>
+        </#if>
+        </div>
+        <div class="subcategories">
+            <strong>Sotto categorie:</strong>
+            <div class="subcategory-buttons">
+                <#if (categorieFiglie?size>0)>
+            <#list categorieFiglie as figlia>
+            <a href="categoria?n=${figlia.key}">
+                <div class="purple-button width150px margin-right shadow-lg">${figlia.nome}</div>
+            </a>
+            </#list>
+        <#else>
+            <span>Nessuna sottocategoria</span>
+        </#if>
+            </div>
+        </div>
+    </div>
+</div>
+ <script type="module" src="scripts/categoria.js"></script>
+

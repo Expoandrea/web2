@@ -1,0 +1,49 @@
+<div class="container-beige">
+    <!-- Navigazione -->
+    <div class="nav-container">
+        <div class="home-card" style="background-color: #F67956;">
+            <a href="homepageordinante">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <h3 style="color: #F67956; margin-left: 10px;">> Nuova Richiesta Ordine</h3> 
+    </div>
+
+    <!-- Selezione della Categoria -->
+    <#if (chosen??)>
+    <form method="post" action="nuova_richiesta_caratteristiche?n=${chosen}">
+        <#else>
+        <form method="post" action="nuova_richiesta">
+    </#if>
+    <input type="hidden" name="action" value="avanti">
+
+    <input type="hidden" id="chosen-category" name="chosen-category">
+
+    <div class="category-container flex flex-col items-center justify-center">
+        <h4 class="mb-4 text-center">Scegli la categoria del prodotto che desideri acquistare</h4>
+        <#if (categorie?size>0)>
+        <select name="category" id="category" class="standard-select  mb-6" onchange="loadSubCategories(this.value)" required="">
+           <option value="" selected disabled>Seleziona una Categoria</option>
+           <#list categorie as cat>
+
+            <option value="${cat.key}">${cat.nome}</option>
+            </#list>
+        </select>
+        </#if>
+    </div>
+    <div id="subcategories-container" class="flex flex-col items-center justify-center gap-4">
+        
+    </div>
+    
+      <div class="form-buttons">
+            <a href="homepageordinante">
+            <div class="purple-button shadow-lg">INDIETRO</div>
+            </a>
+            <button type="submit" class="orange-button shadow-lg">AVANTI</button>
+        </div>
+    </form>
+
+</div>
+
+<!-- script -->
+ <script src="scripts/nuova_richiesta.js"></script>

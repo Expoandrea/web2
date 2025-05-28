@@ -1,0 +1,63 @@
+<div class="container-beige">
+    <div class="nav-container">
+        <div class="home-card" style="background-color: #5D54BE;">
+            <a href="homepagetecnico">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <a href="richieste_tecnico">
+            <h3 style="color: #5D54BE; margin-left: 10px;">> Richieste</h3>
+        </a>
+        <h3 style="color: #5D54BE; margin-left: 10px;">> Richiesta #${richiesta.codiceRichiesta}</h3>
+    </div>
+    <h1 class="hi-text" style="text-align: left;">Richiesta #${richiesta.codiceRichiesta} - ${richiesta.utente.username}</h1>
+    <br>
+    <div class="container-richieste-storico shadow-lg">
+        <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label for="categoria">Categoria:</label>
+                <div class="purple-richiesta-storico" style="width: auto;">${richiesta.categoria.nome}</div>
+            </div>
+        </div>
+        <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label>Caratteristiche:</label>
+                <#if (caratteristiche?size>0)>
+                
+                <div class="skyblue-richiesta-storico">
+                    <#list caratteristiche as car>
+                    <b>${car.caratteristica.nome}:</b> ${car.valore} <br>
+                    </#list>
+                </div>
+                
+                </#if>
+            </div>
+        </div>
+        <div class="row-tecnico">
+            <div class="form-group-tecnico">
+                <label>Note:</label>
+                <div class="skyblue-richiesta-storico">${richiesta.note!'Nessuna nota inserita'}</div>
+            </div>
+        </div>
+        <#if (proposte?size > 0)>
+            <div class="row-tecnico">
+                <div class="form-group-tecnico">
+                    <label>Proposte effettuate:</label>
+                    <#list proposte as proposta>
+                        <a href="detailproposta_tecnico?n=${proposta.key}">
+                            <div class="proposta-card" style="margin-bottom: 2px;">#${proposta.codice}</div>
+                        </a>
+                    </#list>
+                </div>
+            </div>
+        </#if>
+        <#if (source == "richieste")>
+        <div class="row-tecnico">
+            
+            <a href="invioproposta?n=${richiesta.key}">
+                <div class="btn-blu shadow-lg">Compila proposta</div>
+            </a>
+        </div>
+        </#if>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="container-beige">
+    <div class="nav-container">
+        <div class="home-card" style="background-color: #90D5FE;">
+            <a href="homepagetecnico">
+                <img src="images/home-svg.svg" alt="icona home" class="home-icon">
+            </a>
+        </div>
+        <h3 style="color: #0D99FF; margin-left: 10px;">> Proposte inviate</h3> 
+    </div>
+    <div class="search-container">
+
+        <input type="text" id="search-input" placeholder="Cerca per codice..." class="search-input">
+        
+
+    </div>
+    <div class="filter-container">
+        <label class="filter-text" for="stato">Filtra per stato:</label>
+        <select name="stato" id="stato" class="standard-select">
+            <option value="tutti">Tutti</option>
+            <option value="ACCETTATO">Accettato</option>
+            <option value="RIFIUTATO">Rifiutato</option>
+            <option value="IN_ATTESA">In attesa</option>
+            <option value="ORDINATO">Ordinato</option>
+        </select>
+    </div>
+    
+    <!-- Sezione che mostra le richieste non evase -->
+    <#if (proposte?size>0)>
+    <div class="rows-legenda">
+        <div class="card-row-transparent">
+            <div class="card-row-content">
+                <p class="card-row-text">Codice</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Utente</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Data</p>
+            </div>
+            <div class="card-row-content">
+                <p class="card-row-text">Stato</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <#list proposte as proposta>
+        
+    <div class="rows-container">
+        <a href="detailproposta_tecnico?n=${proposta.key}" class="a-cards">
+        <div class="card-row-skyblue proposta-container" data-codice="${proposta.codice}" data-stato="${proposta.getStatoProposta()}">
+            
+                <div class="card-row-content">
+                    <p class="card-row-text">${proposta.codice}</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">${proposta.getRichiestaOrdine().getUtente().getUsername()}</p>
+                </div>
+                <div class="card-row-content">
+                    <p class="card-row-text">${proposta.data}</p>
+                </div>
+                <div class="card-row-content" data-state="${proposta.getStatoProposta()}">
+                    <p class="card-row-text">${proposta.getStatoProposta()}</p>
+                </div>
+            
+        </div>
+            </a>
+        </#list>
+    </div>
+    </#if>
+</div>
+
+<script src="scripts/proposte_tecnico.js"></script>

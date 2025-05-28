@@ -1,0 +1,31 @@
+<div class="form-card">
+    
+<h1 class='title-dark-brown'>Login</h1>
+<#if logininfo??>
+<p>Logged in as ${logininfo.username}</p>
+<p><a href="logout">Logout</a></p>
+<#else>
+<form method="post" action="login">
+    <#if (referrer??)>        
+    <input name="referrer" type="hidden" value="${referrer}"/>
+</#if> 
+<input type="hidden" name="login" value="true"/>
+<div class="input-group">
+    <label for="username" class="form-label">Username:</label>
+    <input type="text" id="username" name="username" class="form-input" required>
+</div>
+<div class="input-group">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" id="password" name="password" class="form-input" required>
+</div>
+<div>
+    <button class="form-button" type="submit">Login</button>
+</div>
+<#if (error??)>
+    <p style="color: red;">${error}</p>
+</#if>
+</form>
+</#if>
+</div>
+
+
