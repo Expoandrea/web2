@@ -39,7 +39,7 @@
         </dependency>
 
         <!-- nota: importare direttamente la piattaforma JavaEE 8 
-            non è teoricamente corretto perchè Tomcat non la implementa completamente
+            non ï¿½ teoricamente corretto perchï¿½ Tomcat non la implementa completamente
         
           <dependency>
             <groupId>javax</groupId>
@@ -90,7 +90,7 @@
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.5.5</version>
-    </dependency>
+        </dependency>
 
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
