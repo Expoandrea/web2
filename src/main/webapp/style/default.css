@@ -68,11 +68,11 @@ input {
     border: none;
     border-radius: 17px;
     font-size: 16px;
-    color: #333;
+    color: #fff;
+    background-color: #093e0c;
     width: 100%;
     box-sizing: border-box;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin: 15px 0;
 }
 
 
@@ -221,7 +221,7 @@ select.medium,input.medium {
             z-index: 1;
             background-color: transparent;
             border-bottom: 2px solid #eee;
-            border-bottom-color: #42A5F5;
+            border-bottom-color: #0b3b0e;
             font: inherit;
             font-size: 1.125rem;
             padding: .25rem 0;
@@ -257,7 +257,6 @@ select.medium,input.medium {
     min-height: 100vh;  /* Garantisce che il contenitore occupi tutta l'altezza */
     display: flex;      /* Abilita Flexbox */
     flex-direction: column;  /* Dispone gli elementi in colonna */
-    align-items: center;     /* Centra orizzontalmente tutti gli elementi */
     justify-content: flex-start; /* Allinea gli elementi all'inizio (in cima) */
     padding: 30px;
 }
@@ -335,9 +334,11 @@ select.medium,input.medium {
 
 .three-buttons-container {
     display: flex;
-    justify-content: center; 
-    gap: 10px; 
-    flex-wrap: wrap;
+    flex-direction: column;   /* bottoni in verticale */
+    align-items: flex-start;  /* allinea i bottoni a sinistra */
+    gap: 10px;
+    align-items: center;
+    padding-left: 20px;       /* (opzionale) margine interno da sinistra */
 }
 
 
@@ -454,7 +455,7 @@ p {
 }
 
 .form-container {
-    background-color: #f5a25d;
+    background-color: #99646554;
     padding: 20px;
     border-radius: 30px;
     text-align: left;
@@ -656,7 +657,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 .margin-10{
-    margin: 10px;
+    margin: 40px;
 }
 
 /*
@@ -1576,8 +1577,10 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 
 .card-notifiche {
+    position: absolute;
+    right: 0;
+    top: 0;  /* o altro valore se vuoi */
     width: 180px; 
-    min-width: 180px;
     height: 50px; 
     border-radius: 20px;
     display: flex;
@@ -1589,6 +1592,8 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     text-align: center;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    margin-top: 150px;
+    
 }
 
 .card-notifiche .img-prof{

@@ -1,5 +1,5 @@
 <div class="container-beige mx-auto p-4 md:p-6 lg:p-8">
-    <h1 class="hi-text text-left text-2xl md:text-3xl lg:text-4xl">Ciao, ${user.username}</h1>
+    <h1 class="hi-text text-left text-2xl md:text-3xl lg:text-4xl">Ciao ${user.username}</h1>
     <br>
    
     <!-- Messaggio di successo per il cambio password -->
@@ -24,6 +24,11 @@
                 <img src="images/nuovaRic.svg" alt="Icona Nuova Richiesta" class="icon h-16 w-16 mx-auto  md:h-20 md:w-20">
                 <p class="card-title-dark">Nuova Richiesta</p>
             </a>
+            
+            <p class="ml-12 text-gray-700 max-w-md">
+    			"Qui puoi creare una nuova richiesta per i tuoi ordini."
+  			</p>
+            
         </div>
         
          <div class="card-skyblue relative p-4 flex flex-col items-center min-h-[200px] md:min-h-[250px] lg:min-h-[300px]">
@@ -31,6 +36,10 @@
                 <img src="images/richiesteEff.svg" alt="Icona Richieste" class="icon h-16 w-16 mx-auto  md:h-20 md:w-20">
                 <p class="card-title-light">Storico Richieste</p>
             </a>
+            
+            <p class="ml-12 text-gray-700 max-w-md">
+    			"Qui puoi controllare lo storico delle richieste.      "
+  			</p>
         </div>
         
         <div class="card-salm relative p-4 flex flex-col items-center min-h-[200px] md:min-h-[250px] lg:min-h-[300px]">
@@ -38,6 +47,11 @@
                 <img src="images/proposte-svg.svg" alt="Icona Proposte" class="icon h-16 w-16 mx-auto md:h-20 md:w-20">
                 <p class="card-title-dark">Proposte</p>
             </a>
+            
+            <p class="ml-12 text-gray-700 max-w-md">
+    			"Qui puoi controllare lo stato delle proposte fatte.   "
+  			</p>
+  			
             <#if proposte?? && proposte == true>
                 <span  class="pallino-rosso absolute top-4 right-4"></span>
                 </#if>
@@ -51,6 +65,11 @@
                 <img src="images/ordini.svg" alt="Icona Ordini" class="icon h-16 w-16 mx-auto  md:h-20 md:w-20">
                 <p class="card-title-light">Ordini</p>
             </a>
+            
+            <p class="ml-12 text-gray-700 max-w-md">
+    			"Qui puoi controllare lo storico degli ordini.         "
+  			</p>
+  			
             <#if ordini?? && ordini == true>
                 <span  class="pallino-rosso absolute top-4 right-4"></span>
                 </#if>
