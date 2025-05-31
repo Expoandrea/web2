@@ -337,6 +337,7 @@ select.medium,input.medium {
     flex-direction: column;   /* bottoni in verticale */
     align-items: flex-start;  /* allinea i bottoni a sinistra */
     gap: 10px;
+    align-items: center;
     padding-left: 20px;       /* (opzionale) margine interno da sinistra */
 }
 
@@ -454,7 +455,7 @@ p {
 }
 
 .form-container {
-    background-color: #f5a25d;
+    background-color: #99646554;
     padding: 20px;
     border-radius: 30px;
     text-align: left;
@@ -1576,8 +1577,10 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 
 .card-notifiche {
+    position: absolute;
+    right: 0;
+    top: 0;  /* o altro valore se vuoi */
     width: 180px; 
-    min-width: 180px;
     height: 50px; 
     border-radius: 20px;
     display: flex;
@@ -1589,6 +1592,8 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     text-align: center;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    margin-top: 150px;
+    
 }
 
 .card-notifiche .img-prof{
