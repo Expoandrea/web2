@@ -2,11 +2,14 @@
 body,html {
     height: 100%;
     width: 100%;
-    padding:0; 
-    margin:0;
+    padding: 0;
+    margin: 0;
     font-size: 11pt;
-    background-color: #ffffff;
-    font-family: 'Open Sans', sans-serif;}
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(to bottom right, #ffffff, #83b686);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 
 textarea{
     padding: 10px;
@@ -20,6 +23,8 @@ textarea{
     margin-bottom: 15px;
 }
 .header-container {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     background-color: #0b3b0e; 
     padding: 20px 40px;
     display: flex;
@@ -44,17 +49,26 @@ textarea{
 }
 
 #body {
-    background: linear-gradient(to bottom right, #ffffff, #83b686);
-    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
+    padding: 0;              
 }
 
+
+
 .container {
-    min-height: 100vh;
-    width: 100%;
+  max-width: 1200px; /* o quello che preferisci */
+  margin: 0 auto;
+  padding: 20px; /* se vuoi */
+  background: transparent; /* senza sfondo */
+  min-height: 100vh; /* se vuoi che sia alto almeno tutta la pagina */
 }
 
 #footer {
+    width: 100vw; 
+    margin-left: calc(-50vw + 50%);
     height:30px;        
     font-size: 9pt;
     text-align: center;
@@ -196,55 +210,69 @@ select.medium,input.medium {
 }
 
 .form-card {
-            max-width: 400px;
-            margin: 100px auto;
-            padding: 30px;
-            background-color: rgba(255, 255, 255, 0.8); 
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
-            backdrop-filter: blur(10px); 
-            text-align: center;
-        }
+  width: 60%;
+  max-width: none;
+  min-width: 300px; 
+  margin: 50px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #3a2e1a;
+}
 
-        .input-group{
-            margin-bottom: 20px;
+        .input-group {
+        margin-bottom: 25px;
+        position: relative;
         }
 
         .form-label {
-            color: #8597a3;
-
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 16px;
+            letter-spacing: 0.4px;
+            color: #000000;
+            text-transform: uppercase;
         }
        
 
         .form-input {
-            border: 0;
-            z-index: 1;
-            background-color: transparent;
-            border-bottom: 2px solid #eee;
-            border-bottom-color: #0b3b0e;
-            font: inherit;
-            font-size: 1.125rem;
-            padding: .25rem 0;
-            width: 70%;
-
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #0b3b0e;
+            padding: 10px 0;
+            font-size: 16px;
+            background: transparent;
+            transition: border-color 0.4s ease;
+            outline: none;
+            color: #000000;
         }
 
-       .form-button {
-           width: 70px;
-           background-color: white;
-           border-radius: 5px;
-           color: black;
-           border: 2px solid #2196F3;
-           transition-duration: 0.4s;
-           width: 20%;
-           height: 30px;
-           margin-bottom: 20px;
-           margin-top: 10px;
+        .form-input::placeholder {
+            color: #0b3b0e;
+            font-style: italic;
+        }
+
+        .form-input:focus {
+            border-bottom-color: #83b686;
+        }
+
+        .form-button {
+            background: linear-gradient(45deg, #8a4ecf, #3a0a70);
+            color: #fff;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 14px;
+            width: 100%;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            letter-spacing: 1.2px;
         }
 
         .form-button:hover {
-          background-color: #2196F3;
-          color: white;
+            background: linear-gradient(45deg, #3a0a70, #8a4ecf);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
         }
 
         
@@ -277,6 +305,8 @@ select.medium,input.medium {
 .hi-text {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 30px;
+    text-align: center;
+    width: 100%;
     color: #000000;
     margin-bottom: 10px;
 }
@@ -295,6 +325,7 @@ select.medium,input.medium {
 .subtitle2 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 18px;
+    text-align: center;
     color: #000000;
     margin-bottom: 20px;
 }
@@ -450,31 +481,54 @@ p {
 
 .form-title {
     font-size: 24px;
-    color: #333;
+    color: #000000;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .form-container {
-    background-color: #99646554;
+    background-color: transparent;
+    border: 2px solid #0b3b0e;
     padding: 20px;
     border-radius: 30px;
     text-align: left;
 }
 
 .role-selection {
-    margin-bottom: 20px;
+    width: 100%; 
+    text-align: center; 
+    padding: 0;
+    margin: 0;
 }
 
-.white-label{
+.black-label{
     display: block;
     font-size: 16px;
-    color: white;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
     margin-bottom: 5px;}
 
 .role-buttons {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.role-buttons label {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid #8a4ecf;
+    border-radius: 25px;
+    background-color: transparent;
+    color: #000000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px; 
+    text-align: center;
 }
 
 .role-buttons input[type="radio"] {
@@ -483,25 +537,28 @@ p {
 
 
 .role-buttons input[type="radio"]:checked + label {
-    background-color: #67c4f1;
+    background-color: #8a4ecf;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(138, 78, 207, 0.4);
+    transform: scale(1.05);
 }
 
-.lblue-button {
-    background-color: #aad4fc;
-    border: none;
-    border-radius: 15px;
-    padding: 10px 20px;
+.lpurp-button {
+    min-width: 150px;   
+    padding: 10px 30px;               
+    display: inline-block;  
+    text-align: center;     
     cursor: pointer;
+    border-radius: 15px;
+    background-color: #8a4ecf;
     color: white;
     font-weight: bold;
-    flex: 1;
-    margin: 0 5px;
+    font-size: 14px;
     transition: background-color 0.3s ease;
-    font-size:14px;
 }
 
-.lblue-button:hover, .icon-button:hover {
-    background-color: #67c4f1;
+.lpurp-button:hover, .icon-button:hover {
+    background-color: rgba(138, 78, 207, 0.7);
 }
 
 .form-group {
@@ -514,19 +571,26 @@ p {
 
 .form-group label {
     font-size: 16px;
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: right; 
     padding-right: 10px;
 }
 
 .form-group input {
-   padding: 10px;
+    padding: 10px;
     border: none;
-    border-radius: 17px;
+    border-bottom: 2px solid #0b3b0e;  
+    border-radius: 0 0 8px 8px;                  
     font-size: 16px;
-    color: #333;
+    color: #000000;                    
+    background-color: transparent;    
     width: 100%;
     box-sizing: border-box;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-bottom: 2px solid #83b686;
 }
 
 .form-buttons {
@@ -536,10 +600,12 @@ p {
 }
 
 .purple-button {
-    background-color: #546de5;
+    background-color: #3a0a70;
     border: none;
+    min-width: 150px;
     border-radius: 15px;
     padding: 10px 30px;
+    font-size: 14px;
     color: white;
     cursor: pointer;
     font-weight: bold;
@@ -576,7 +642,7 @@ p {
 }
 
 .orange-button {
-    background-color: #ff6f3e;
+    background-color: #ffc400;
     border: none;
     border-radius: 15px;
     padding: 10px 30px;
@@ -587,18 +653,12 @@ p {
 }
 
 .purple-button:hover {
-    background-color: #405dce;
+    background-color: #8a4ecf;
 }
 
-/*
-dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte 
-.purple-button:hover {
-    background-color: #06b22e;
-}
 
-*/
 .orange-button:hover {
-    background-color: #e65c2e;
+    background-color: #ffd54d;
 }
 
 .title-container{
@@ -606,8 +666,9 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-
 }
+
+
 .logo {
     width: 40px;
     height: 40px;
@@ -642,11 +703,12 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 }
 
 
-.title-dark-brown {
-    font-size: 24px;
-    font-weight: bold;
-    color: #6d4c41;
-    margin: 10px;
+.title-dark {
+  color: #000000; 
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .title-black {
@@ -660,26 +722,19 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     margin: 40px;
 }
 
-/*
+
 .categories {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(4, 1fr); /* 4 colonne uguali */
     gap: 20px;
+    justify-content: center; /* centro orizzontalmente la griglia */
+    padding: 20px;
+    max-width: 900px; /* opzionale, limita la larghezza */
+    margin: 0 auto; /* centro nella pagina */
 }
 
 .category-item{
-    width: 100%;
-}
-*/
-.categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.category-item{
-    flex: 1 1 150px;
-    display: block;
+    text-align: center;
 }
 
 
@@ -829,8 +884,11 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
     background-color: #e65746;
 }
 
-.error-message{
-    color: red;
+.error-message {
+  color: #d9534f;
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 14px;
 }
 
 .success-msg {
@@ -1415,7 +1473,7 @@ dovete chiamarlo in un altro modo, sennò si sminchiano cose già fatte
 
 
 /* Responsive for homepage admin*/
-@media (max-width: 600px) {
+@media (max-width: none) {
     .container-beige {
         width: 85%;
         padding: 20px;

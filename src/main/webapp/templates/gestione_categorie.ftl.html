@@ -5,7 +5,7 @@
             <img src="images/home-svg.svg" alt="Home" />
         </div>
          </a>
-        <h2 class="title-dark-brown">Categorie</h2>
+        <h2 class="title-dark">Categorie</h2>
         <div class="search-bar">
             <input type="text" id="search" placeholder="Search...">
         </div>
@@ -13,7 +13,7 @@
     <#if (categorie?size>0)>
     <div class="categories">
         <a href="aggiungicategoria">
-        <div class="lblue-button width150px height61px span-1 shadow-lg">Aggiungi</div>
+        <div class="lpurp-button width150px height61px span-1 shadow-lg">Aggiungi</div>
         </a>
         <#list categorie as categoria>
         <a href="categoria?n=${categoria.key}">
