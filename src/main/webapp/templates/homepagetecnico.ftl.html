@@ -1,5 +1,5 @@
 <div class="container-beige mx-auto p-4">
-    <h1 class="hi-text" style="text-align: left;">Ciao, ${user.username}</h1>
+    <h1 class="hi-text" style="text-align: center;">Ciao, ${user.username}</h1>
     <br>
 
     <!-- Messaggio di successo per il cambio password -->
@@ -16,42 +16,42 @@
     </div>
     
     <div class="three-buttons-container">
-        <div class="card-purple relative p-4 flex flex-col items-center" style="position: relative;">
+        <div class="card-1 relative p-4 flex flex-col items-center" style="position: relative;">
             <a href="richieste_tecnico">
                 <img src="images/richieste-svg.svg" alt="icona richieste non evase" class="icon h-16 w-16 mx-auto">
                 <p class="card-title-light">Richieste non evase</p>
             </a>
             
-            <p class="ml-12 text-gray-700 max-w-md">
-    			"Qui puoi controllare l'elenco delle richieste non evase."
+            <p class="text-card">
+    			Qui puoi controllare l'elenco delle richieste non evase.
   			</p>
   			
             <#if richieste_prese_in_carico?? && richieste_prese_in_carico == true>
                 <span  class="pallino-rosso"></span>
                 </#if>
         </div>
-        <div class="card-skyblue relative p-4 flex flex-col items-center" style="position: relative;">
+        <div class="card-2 relative p-4 flex flex-col items-center" style="position: relative;">
             <a href="proposte_tecnico">
                 <img src="images/proposte-svg.svg" alt="icona proposte inviate" class="icon icon h-16 w-16 mx-auto">
-                <p class="card-title-dark">Proposte inviate</p>
+                <p class="card-title-light">Proposte inviate</p>
             </a>
             
-            <p class="ml-12 text-gray-700 max-w-md">
-    			"Qui puoi controllare le proposte inviate."
+            <p class="text-card">
+    			Qui puoi controllare le proposte inviate.
   			</p>
   			
             <#if proposte?? && proposte == true>
                 <span  class="pallino-rosso"></span>
                 </#if>
         </div>
-        <div class="card-orange relative p-4 flex flex-col items-center" style="position: relative;">
+        <div class="card-3 relative p-4 flex flex-col items-center" style="position: relative;">
             <a href="storico_tecnico">
                 <img src="images/storico-svg.svg" alt="icona storico" class="icon icon h-16 w-16 mx-auto">
                 <p class="card-title-light">Storico ordini</p>
             </a>
             
-            <p class="ml-12 text-gray-700 max-w-md">
-    			"Qui puoi controllare lo storico degli ordini."
+            <p class="text-card">
+    			Qui puoi controllare lo storico degli ordini.
   			</p>
   			
             <#if ordini?? && ordini == true>
