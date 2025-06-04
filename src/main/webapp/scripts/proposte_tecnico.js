@@ -9,22 +9,22 @@ function getStatoProposta(statoProposta, p) {
     let backgroundColor;
     switch (statoProposta) {
         case "IN_ATTESA":
-            backgroundColor = "#FFE8A3";
+            backgroundColor = "#83b686";
             break;
         case "ACCETTATO":
-            backgroundColor = "#AFF4C6";
+            backgroundColor = "#ffc400";
             break;
         case "RIFIUTATO":
             backgroundColor = "#FFAEAE";
             break;
         case "ORDINATO":
-            backgroundColor = "#E4CCFF";
+            backgroundColor = "#aad4fc";
             break;
         default:
             backgroundColor = "#FFFFFF";
     }
     if (p === 'big-badge'){return `
-        <div class="card-row-content" style="background-color: ${backgroundColor};">
+        <div class="card-row-content" style="background-color: ${backgroundColor}; border-radius: 12px; padding: 6px 10px;">
             <p class="card-row-text">${statoProposta}</p>
         </div>
     `;}
@@ -69,12 +69,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const stato = container.getAttribute("data-stato");
 
         if (stato === "ACCETTATO" ) {
-            container.style.backgroundColor = "#67c4f1";
+            container.style.backgroundColor = "#8a4ecf";
             container.addEventListener("mouseover", function() {
-                container.style.backgroundColor = "#31a8e3";
+                container.style.backgroundColor = "#3a0a70";
             });
             container.addEventListener("mouseout", function() {
-                container.style.backgroundColor = "#67c4f1";
+                container.style.backgroundColor = "#8a4ecf";
             });
         }
     });

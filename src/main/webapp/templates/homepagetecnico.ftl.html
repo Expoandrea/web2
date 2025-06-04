@@ -60,15 +60,16 @@
         </div>
     </div>
     <#if richieste_in_attesa?? && richieste_in_attesa == true>
-    <div class="notifications-container flex justify-end mt-4">
-        <div class="card-notif-pulse flex justify-center min-w-[200px] h-15">
-            <a href="notifiche_tecnico" class="a-cards p-4 flex flex-row items-center ml-2 mr-2 space-x-2" style="border-radius: 20px;">
+    <div class="notifications-container w-full flex justify-center mt-8">
+        <div class="card-notif-pulse flex justify-center items-center min-w-[200px] h-15">
+            <a href="notifiche_tecnico" class="a-cards p-4 flex flex-row items-center space-x-2" style="border-radius: 20px;">
                 <img src="images/notifications-svg.svg" alt="icona notifiche" class="img-notif">
                 <p class="card-text text-gray-700 font-medium whitespace-nowrap">Nuove Richieste</p>
             </a>
         </div>
     </div>
     </#if>
+
 </div>
 
 <script src="scripts/homepage.js"></script>

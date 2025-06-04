@@ -9,19 +9,19 @@ function getStatoOrdine(statoOrdine) {
 
     switch (statoOrdine) {
         case 'RESPINTO_NON_CONFORME':
-            backgroundColor = '#FFAEAE'; 
+            backgroundColor = '#aad4fc'; 
             break;
         case 'RESPINTO_NON_FUNZIONANTE':
-            backgroundColor = '#E4CCFF'; 
+            backgroundColor = '#aad4fc'; 
             break;
         case 'IN_ATTESA':
-            backgroundColor = '#FFEECC'; 
+            backgroundColor = '#83b686'; 
             break;
         case 'ACCETTATO':
-            backgroundColor = '#AFF4C6';
+            backgroundColor = '#ffc400';
             break;
         case 'RIFIUTATO':
-                backgroundColor = '#f76a6a'; 
+                backgroundColor = '#FFAEAE'; 
                 break;
 
 
@@ -29,7 +29,7 @@ function getStatoOrdine(statoOrdine) {
         backgroundColor = "#FFFFFF";
 }
 return `
-    <div class="card-row-content" style="background-color: ${backgroundColor};">
+    <div class="card-row-content" style="background-color: ${backgroundColor}; border-radius: 12px;">
         <p class="card-row-text">${statoOrdine}</p>
     </div>
 `;
@@ -58,20 +58,20 @@ document.addEventListener("DOMContentLoaded", function() {
     ordineContainers.forEach(container => {
         const stato = container.getAttribute("data-stato");
         if (stato === "RESPINTO_NON_CONFORME" || stato === "RESPINTO_NON_FUNZIONANTE") {
-            container.style.backgroundColor = "#F67956";
+            container.style.backgroundColor = "#b682f1";
             container.addEventListener("mouseover", function() {
-                container.style.backgroundColor = "#f55e33";
+                container.style.backgroundColor = "#8a4ecf";
             });
             container.addEventListener("mouseout", function() {
-                container.style.backgroundColor = "#F67956";
+                container.style.backgroundColor = "#b682f1";
             });
         } else {
-            container.style.backgroundColor = "#e6a693";
+            container.style.backgroundColor = "#d2b4f5";
             container.addEventListener("mouseover", function() {
-                container.style.backgroundColor = "#F67956";
+                container.style.backgroundColor = "#b682f1";
             });
             container.addEventListener("mouseout", function() {
-                container.style.backgroundColor = "#e6a693";
+                container.style.backgroundColor = "#d2b4f5";
             });
         }
     });
