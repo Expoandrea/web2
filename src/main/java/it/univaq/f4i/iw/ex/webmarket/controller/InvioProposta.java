@@ -20,30 +20,25 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.itextpdf.text.DocumentException;
 
-/**
- *
- * @author Giulia Di Flamminio & Gea Viozzi
- */
 public class InvioProposta extends BaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
         TemplateResult res = new TemplateResult(getServletContext());
         request.setAttribute("page_title", "Invio proposta");
 
-        //Recupero la key passata come parametro
         int richiesta_key = Integer.parseInt(request.getParameter("n"));
-        
-        //Recupero la richiesta usando la key
-        RichiestaOrdine richiesta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiestaOrdine(richiesta_key);
+        RichiestaOrdine richiesta = ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getRichiestaOrdineDAO().getRichiestaOrdine(richiesta_key);
         request.setAttribute("richiesta", richiesta);
 
         res.activate("invioproposta.ftl.html", request, response);
     }
 
-    private void action_sendProposta(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
-        RichiestaOrdine richiesta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiestaOrdine(n);
+    private void action_sendProposta(HttpServletRequest request, HttpServletResponse response, int n)
+            throws IOException, ServletException, TemplateManagerException, DataException {
+        RichiestaOrdine richiesta = ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getRichiestaOrdineDAO().getRichiestaOrdine(n);
 
-        // Recupero i dati dal form
         String produttore = request.getParameter("produttore");
         String prodotto = request.getParameter("prodotto");
         String codiceProdotto = request.getParameter("codiceProdotto");
@@ -55,15 +50,10 @@ public class InvioProposta extends BaseController {
             action_default(request, response, n);
             return;
         }
-        String url = request.getParameter("url");
-        String note;
-        if (request.getParameter("note").isEmpty()) {
-            note = null;
-        } else {
-            note = request.getParameter("note");
-        }
 
-        // Creo una nuova proposta
+        String url = request.getParameter("url");
+        String note = request.getParameter("note").isEmpty() ? null : request.getParameter("note");
+
         PropostaAcquisto proposta = new PropostaAcquistoImpl();
         proposta.setProduttore(produttore);
         proposta.setProdotto(prodotto);
@@ -75,33 +65,24 @@ public class InvioProposta extends BaseController {
         proposta.setMotivazione(null);
         proposta.setRichiestaOrdine(richiesta);
 
-        // Salvo la proposta nel database
-        ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
+        ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
 
-        // Recupero l'email dell'utente
         String email = richiesta.getUtente().getEmail();
 
-        // Configuro le proprietà per l'invio dell'email
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.outlook.com"); 
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new javax.mail.PasswordAuthentication("webmarket.univaq@outlook.com", "geagiuliasamanta1");
-            }
-        });
+        // ✅ Configurazione Mailgun
+        
+        Session session = EmailSender.createMailgunSession();
 
         String tipo = "PropostaRichiesta_";
-        String text = "Gentile Utente, Le è stata inviata una proposta d'acquisto per la sua richiesta numero " + richiesta.getCodiceRichiesta() + ". In allegato trova i dettagli.\n\nCordiali Saluti,\nIl team di WebMarket";
-        
-        //Mi servono per la generazione del pdf
-        PropostaAcquisto prop = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(proposta.getKey());
-        String codice = prop.getCodice();  
+        String text = "Gentile Utente, Le è stata inviata una proposta d'acquisto per la sua richiesta numero "
+                + richiesta.getCodiceRichiesta() + ". In allegato trova i dettagli.\n\nCordiali Saluti,\nIl team di WebMarket";
 
-        String messaggio = "Dettagli della proposta per la richiesta numero: " + richiesta.getCodiceRichiesta() + "\n\n";
+        PropostaAcquisto prop = ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getPropostaAcquistoDAO().getPropostaAcquisto(proposta.getKey());
+        String codice = prop.getCodice();
+        String messaggio = "Dettagli della proposta per la richiesta numero: " + richiesta.getCodiceRichiesta()
+                + "\n\n";
         String pdfFilePath = "PropostaRichiesta_" + codice + ".pdf";
 
         try {
@@ -111,13 +92,12 @@ public class InvioProposta extends BaseController {
             e.printStackTrace();
         }
 
-        // Reindirizzo alla pagina di dettaglio della proposta
         response.sendRedirect("detailproposta_tecnico?n=" + proposta.getKey());
     }
 
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException {
+            throws ServletException {
         try {
             HttpSession session = SecurityHelpers.checkSession(request);
             int n = SecurityHelpers.checkNumeric(request.getParameter("n"));
@@ -128,7 +108,7 @@ public class InvioProposta extends BaseController {
             }
 
             String action = request.getParameter("action");
-            if (action != null && action.equals("invioProposta")) {
+            if ("invioProposta".equals(action)) {
                 action_sendProposta(request, response, n);
             } else {
                 action_default(request, response, n);

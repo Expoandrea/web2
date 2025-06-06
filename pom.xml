@@ -140,6 +140,16 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <mainClass>it.univaq.f4i.iw.ex.webmarket.controller.TestMailgun</mainClass>
+                </configuration>
+            </plugin>
+
        
         </plugins>
     </build>

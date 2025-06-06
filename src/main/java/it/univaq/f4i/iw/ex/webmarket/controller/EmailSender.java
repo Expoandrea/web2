@@ -6,6 +6,10 @@ package it.univaq.f4i.iw.ex.webmarket.controller;
 
 
 import com.itextpdf.text.Anchor;
+
+import javax.mail.PasswordAuthentication;
+import java.util.Properties;
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -52,35 +56,71 @@ public class EmailSender {
 	 * @param body
 	 */
     
-	public static void sendEmail(Session session, String toEmail, String subject, String body){
-		try
-	    {
-	      MimeMessage msg = new MimeMessage(session);
-	      //message headers
-	      msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
-	      msg.addHeader("format", "flowed");
-	      msg.addHeader("Content-Transfer-Encoding", "8bit");
+	
+	 
+     private static Properties loadMailProperties() {
+        Properties prop = new Properties();
+        try (FileInputStream input = new FileInputStream("config.properties")) {
+            prop.load(input);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException("Impossibile caricare il file config.properties");
+        }
+        return prop;
+    }
+    
 
-	      msg.setFrom(new InternetAddress("webmarket.univaq@outlook.com", "WebMarket"));
+     public static Session createMailgunSession() {
+        Properties config = loadMailProperties(); // carica dal file
+        String username = config.getProperty("mailgun.username");
+        String password = config.getProperty("mailgun.password");
+    
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.mailgun.org");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.debug", "true");
+    
+        return Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+    }
+    
+	
+	
+	
+	public static void sendEmail(Session session, String toEmail, String subject, String body) {
+	    try {
+	        MimeMessage msg = new MimeMessage(session);
 
-	      msg.setReplyTo(InternetAddress.parse("webmarket.univaq@outlook.com", false));
+	        // Headers
+	        msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+	        msg.addHeader("format", "flowed");
+	        msg.addHeader("Content-Transfer-Encoding", "8bit");
 
-	      msg.setSubject(subject, "UTF-8");
+	        // Il mittente DEVE essere quello autorizzato nel sandbox di Mailgun
+	        msg.setFrom(new InternetAddress("postmaster@sandbox7a2e2654f5714bd79d57ba7e92bd74cd.mailgun.org", "WebMarket"));
 
-	      msg.setText(body, "UTF-8");
+	        // Puoi lasciare questo o toglierlo del tutto
+	        msg.setReplyTo(InternetAddress.parse("webmarket.univaq@outlook.com", false));
 
-	      msg.setSentDate(new Date());
+	        msg.setSubject(subject, "UTF-8");
+	        msg.setText(body, "UTF-8");
+	        msg.setSentDate(new Date());
+	        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
 
-	      msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
-	      System.out.println("Message is ready");
-    	  Transport.send(msg);  
+	        System.out.println("Message is ready");
+	        Transport.send(msg);
+	        System.out.println("Email inviata con successo!");
 
-	      System.out.println("EMail Sent Successfully!!");
-	    }
-	    catch (Exception e) {
-	      e.printStackTrace();
+	    } catch (Exception e) {
+	        e.printStackTrace();
 	    }
 	}
+
         
         // la creazione di questo pdf ha richiesto piu tempo di tutto il progetto
         public static void createPDF(String tipo, String messaggio, PropostaAcquisto proposta, String codice) throws FileNotFoundException, DocumentException{
@@ -161,42 +201,38 @@ public class EmailSender {
 
         
         public static void sendEmailWithAttachment(Session session, String toEmail, String subject, String body, String pdfFilePath) {
-        try {
-            MimeMessage msg = new MimeMessage(session);
-            msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
-            msg.addHeader("format", "flowed");
-            msg.addHeader("Content-Transfer-Encoding", "8bit");
+            try {
+                MimeMessage msg = new MimeMessage(session);
+                msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+                msg.addHeader("format", "flowed");
+                msg.addHeader("Content-Transfer-Encoding", "8bit");
 
-            msg.setFrom(new InternetAddress("webmarket.univaq@outlook.com", "WebMarket"));
+                msg.setFrom(new InternetAddress("postmaster@sandbox7a2e2654f5714bd79d57ba7e92bd74cd.mailgun.org", "WebMarket"));
+                msg.setReplyTo(InternetAddress.parse("postmaster@sandbox7a2e2654f5714bd79d57ba7e92bd74cd.mailgun.org", false));
 
-            msg.setReplyTo(InternetAddress.parse("webmarket.univaq@outlook.com", false));
+                msg.setSubject(subject, "UTF-8");
+                msg.setSentDate(new Date());
+                msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
 
-            msg.setSubject(subject, "UTF-8");
+                MimeBodyPart messageBodyPart = new MimeBodyPart();
+                messageBodyPart.setText(body, "UTF-8");
 
-            msg.setSentDate(new Date());
+                MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+                attachmentBodyPart.attachFile(new File(pdfFilePath));
+                attachmentBodyPart.setFileName(MimeUtility.encodeText(new File(pdfFilePath).getName(), "UTF-8", null));
 
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
+                Multipart multipart = new MimeMultipart();
+                multipart.addBodyPart(messageBodyPart);
+                multipart.addBodyPart(attachmentBodyPart);
 
-            MimeBodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText(body, "UTF-8");
+                msg.setContent(multipart);
 
-            MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-            attachmentBodyPart.attachFile(new File(pdfFilePath));
-            attachmentBodyPart.setFileName(MimeUtility.encodeText(new File(pdfFilePath).getName(), "UTF-8", null));
+                Transport.send(msg);
+                System.out.println("Email con allegato PDF inviata con successo!");
 
-            Multipart multipart = new MimeMultipart();
-            multipart.addBodyPart(messageBodyPart);
-            multipart.addBodyPart(attachmentBodyPart);
-
-            msg.setContent(multipart);
-
-            Transport.send(msg);
-
-            System.out.println("Email con allegato PDF inviata con successo!");
-
-        } catch (MessagingException | IOException e) {
-            e.printStackTrace();
+            } catch (MessagingException | IOException e) {
+                e.printStackTrace();
+            }
         }
-    }
 
 }
