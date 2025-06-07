@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package it.univaq.f4i.iw.ex.webmarket.controller;
+import java.io.InputStream;
 
-
+import java.io.FileInputStream;
 import com.itextpdf.text.Anchor;
 
 import javax.mail.PasswordAuthentication;
@@ -60,14 +61,18 @@ public class EmailSender {
 	 
      private static Properties loadMailProperties() {
         Properties prop = new Properties();
-        try (FileInputStream input = new FileInputStream("config.properties")) {
+        try (InputStream input = EmailSender.class.getClassLoader().getResourceAsStream("config.properties")) {
+            if (input == null) {
+                throw new RuntimeException("Impossibile trovare config.properties nel classpath");
+            }
             prop.load(input);
         } catch (IOException ex) {
             ex.printStackTrace();
-            throw new RuntimeException("Impossibile caricare il file config.properties");
+            throw new RuntimeException("Errore caricando config.properties dal classpath");
         }
         return prop;
     }
+    
     
 
      public static Session createMailgunSession() {
