@@ -44,17 +44,8 @@ public class DettaglioPropostaOrd extends BaseController {
 
         
         //gestione email
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.outlook.com"); 
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
+        Session session = EmailSender.createMailgunSession();
 
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new javax.mail.PasswordAuthentication("webmarket.univaq@outlook.com", "geagiuliasamanta1");
-            }
-        });
         String text = "Ciao "+username+",\n La informiamo che la sua proposta numero " + proposta.getCodice() +"è stata ACCETTATA. In allegato trova i dettagli della proposta.";
         // genero PDF
         String tipo = "OrdineProposta_";

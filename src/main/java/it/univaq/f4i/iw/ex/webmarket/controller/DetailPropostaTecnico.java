@@ -40,60 +40,55 @@ public class DetailPropostaTecnico extends BaseController {
     }
     
   
-    private void action_sendOrdine(HttpServletRequest request, HttpServletResponse response, int n) throws IOException, ServletException, TemplateManagerException, DataException {
-        PropostaAcquisto proposta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(n);
-        
-        //cambio stato proposta
+    private void action_sendOrdine(HttpServletRequest request, HttpServletResponse response, int n)
+            throws IOException, ServletException, TemplateManagerException, DataException {
+        PropostaAcquisto proposta = ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getPropostaAcquistoDAO().getPropostaAcquisto(n);
+
+        // Cambio stato proposta
         proposta.setStatoProposta(StatoProposta.ORDINATO);
-        ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
-        
-        //cambio stato richiesta
+        ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
+
+        // Cambio stato richiesta
         RichiestaOrdine richiesta = proposta.getRichiestaOrdine();
         richiesta.setStato(StatoRichiesta.ORDINATA);
-        ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().storeRichiestaOrdine(richiesta);
-        
-        //trovo email utente
+        ((ApplicationDataLayer) request.getAttribute("datalayer"))
+                .getRichiestaOrdineDAO().storeRichiestaOrdine(richiesta);
+
+        // Trovo email utente
         String email = richiesta.getUtente().getEmail();
 
+        // Creo nuovo ordine
         Ordine ordine = new OrdineImpl();
         ordine.setProposta(proposta);
         ordine.setStato(StatoOrdine.IN_ATTESA);
         ordine.setData(new Date(System.currentTimeMillis()));
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getOrdineDAO().storeOrdine(ordine);
-        
-        //gestione email
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.outlook.com"); 
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
 
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new javax.mail.PasswordAuthentication("webmarket.univaq@outlook.com", "geagiuliasamanta1");
-            }
-        });
-        String text = "Gentile Utente, la informiamo che è stato effettuato un ordine per la sua proposta numero " + proposta.getCodice() +"\n\n In allegato trova i dettagli del suo ordine.";
-        // genero PDF
+        // Uso Mailgun per invio email
+        Session session = EmailSender.createMailgunSession();
+
+        String text = "Gentile Utente, la informiamo che è stato effettuato un ordine per la sua proposta numero " 
+                      + proposta.getCodice() + "\n\nIn allegato trova i dettagli del suo ordine.";
+
+        // Genero PDF
         String tipo = "OrdineProposta_";
-        String messaggio = "\n Dettagli dell'ordine effettuato per la proposta numero: "+ proposta.getCodice()+"\n\n";
+        String messaggio = "\n Dettagli dell'ordine effettuato per la proposta numero: " 
+                           + proposta.getCodice() + "\n\n";
         String pdfFilePath = "OrdineProposta_" + proposta.getCodice() + ".pdf";
-
         String codice = proposta.getCodice();
 
         try {
             EmailSender.createPDF(tipo, messaggio, proposta, codice);
-
-           
             EmailSender.sendEmailWithAttachment(session, email, "Notifica Ordine", text, pdfFilePath);
         } catch (DocumentException e) {
             e.printStackTrace();
         }
 
-        response.sendRedirect("storico_tecnico"); 
-        
-
+        response.sendRedirect("storico_tecnico");
     }
+
     
     @Override
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

@@ -55,17 +55,8 @@ public class DettaglioOrdineOrd extends BaseController {
 
         
         //gestione email
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.outlook.com"); 
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new javax.mail.PasswordAuthentication("webmarket.univaq@outlook.com", "geagiuliasamanta1");
-            }
-        });
+        Session session = EmailSender.createMailgunSession();
+        
         String text = "Ciao "+username+",\n La informiamo che l'ordine da lei inviato in data " + ordine.getData() +" è stato ACCETTATO.";
         // genero PDF
          String tipo = "Ordine_";
