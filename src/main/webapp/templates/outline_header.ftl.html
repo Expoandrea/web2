@@ -1,12 +1,28 @@
-<div class="header-container" id="header">
-    <div class="sixteen columns">Web Market
-        <div class="subtitle">L'eCommerce facile per il tuo ente</div>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Market</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="header-container" id="header">
+    <div class="header-content">
+      <div class="title">Web Market</div>
+      <div class="subtitle">L'eCommerce facile per il tuo ente</div>
     </div>
     <div class="logininfo">
         <#if logininfo??>
-        <a href="logout?referrer=${thispageurl?url}" style="color: black;"><img class="tiny-logo" src="images/logout.svg" alt="Log Out" /></a>
+            <a href="logout?referrer=${thispageurl?url}">
+                <img class="tiny-logo" src="images/logout.svg" alt="Log Out" />
+            </a>
         <#else>
-        <a href="login?referrer=${thispageurl?url}">[login]</a>
+            <a href="login?referrer=${thispageurl?url}">[login]</a>
         </#if>
     </div>
-</div>
+    <div class="wave"></div>
+  </div>
+
+</body>
+</html>

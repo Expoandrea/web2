@@ -23,18 +23,57 @@ textarea{
     margin-bottom: 15px;
 }
 .header-container {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    background-color: #0b3b0e; 
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 0 0 25px 25px;
-    font-size: 20pt;
-    font-weight: bold;
-    text-align: center;
-    color: white;
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);  /* ✅ Compensa lo shift orizzontale */
+  background: linear-gradient(135deg, #0b3b0e, #145214);
+  color: white;
+  padding: 40px 60px 60px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-size: 26pt;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 14pt;
+  font-style: italic;
+}
+
+.logininfo img.tiny-logo {
+  width: 24px;
+  height: 24px;
+  filter: invert(1); /* bianco su sfondo scuro */
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.logininfo img.tiny-logo:hover {
+  transform: scale(1.1);
+}
+
+/* Onda in fondo al blocco */
+.wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%230b3b0e' d='M0,96L80,106.7C160,117,320,139,480,133.3C640,128,800,96,960,80C1120,64,1280,64,1360,64L1440,64V150H1360C1280,150,1120,150,960,150C800,150,640,150,480,150C320,150,160,150,80,150H0Z'/%3E%3C/svg%3E") no-repeat bottom;
+  background-size: cover;
+  z-index: 0;
 }
 
 
@@ -43,9 +82,9 @@ textarea{
 }
 
 .logininfo {
-    font-size: 40%;
-    text-align: right;
-    margin-right: 1em;
+  position: absolute;
+  top: 30px;       
+  right: 30px;     
 }
 
 #body {
@@ -473,8 +512,9 @@ homepage admin
     transition: transform 0.3s ease; 
 }
 
-.card-salm {
-    background-color:#1E88E5; 
+.card-4 {
+    background-color:#cdadf3; 
+    transition: transform 0.3s ease; 
 }
 
 .card-1:hover {
@@ -489,8 +529,8 @@ homepage admin
     transform: scale(1.05);
 }
 
-.card-salm:hover {
-    background-color: #1976D2; 
+.card-4:hover {
+    transform: scale(1.05); 
 }
 
 .card-pink-notifications:hover {
@@ -1051,6 +1091,7 @@ p {
     transition: background-color 0.3s ease;
     cursor: pointer;
     width: 100%;
+    align-items: center;
 }
 
 .card-row-transparent {
