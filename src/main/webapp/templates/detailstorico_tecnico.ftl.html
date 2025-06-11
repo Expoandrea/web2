@@ -1,14 +1,14 @@
 <div class="container-beige">
     <div class="nav-container">
-        <div class="home-card" style="background-color: #F67956;">
+        <div class="home-card" style="background-color: #b682f1;">
             <a href="homepagetecnico">
                 <img src="images/home-svg.svg" alt="icona home" class="home-icon">
             </a>
         </div>
         <a href="storico_tecnico">
-            <h3 style="color: #F67956; margin-left: 10px;">> Storico ordini</h3>
+            <h3 style="color: #b682f1; margin-left: 10px;">> Storico ordini</h3>
         </a>
-        <h3 style="color: #F67956; margin-left: 10px;">> Ordine del ${ordine.data}</h3> 
+        <h3 style="color: #b682f1; margin-left: 10px;">> Ordine del ${ordine.data}</h3> 
     </div>
     <h1 class="hi-text" style="text-align: left;"> Ordine della proposta #${ordine.getProposta().codice} -  ${ordine.getProposta().richiestaOrdine.utente.username}</h1> 
     <br>
@@ -47,7 +47,7 @@
                     <#if ordine.stato == "RESPINTO_NON_CONFORME" || ordine.stato == "RESPINTO_NON_FUNZIONANTE">
                     <form action="detailstorico_tecnico?n=${ordine.key}" method="post">
                         <input type="hidden" name="action" value="reinviaOrdine">
-                        <button type="submit" class="btn-verde shadow-lg">Re-invia ordine</button>
+                        <button type="submit" class="btn-blu shadow-lg">Re-invia ordine</button>
                     </form>
                 </#if>
                 </div>

@@ -16,23 +16,23 @@ document.addEventListener("DOMContentLoaded", function() {
      */
     switch(stato) {
         case 'RESPINTO_NON_CONFORME':
-            statoBadge.style.backgroundColor = '#FFAEAE';
+            statoBadge.style.backgroundColor = '#aad4fc';
             break;
 
         case 'RESPINTO_NON_FUNZIONANTE':
-            statoBadge.style.backgroundColor = '#E4CCFF';
+            statoBadge.style.backgroundColor = '#aad4fc';
             break;
 
         case 'IN_ATTESA':
-            statoBadge.style.backgroundColor = '#FFEECC';
+            statoBadge.style.backgroundColor = '#83b686';
             break;
 
         case 'RIFIUTATO':
-            statoBadge.style.backgroundColor = '#f76a6a';
+            statoBadge.style.backgroundColor = '#FFAEAE';
             break;
 
         case 'ACCETTATO':
-            statoBadge.style.backgroundColor = '#AFF4C6';
+            statoBadge.style.backgroundColor = '#ffc400';
             break;
         
         default:

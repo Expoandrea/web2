@@ -1,15 +1,15 @@
 <div class="container-beige">
     <div class="nav-container">
-        <div class="home-card" style="background-color: #90D5FE;">
+        <div class="home-card" style="background-color: #8a4ecf;">
             <a href="homepagetecnico">
                 <img src="images/home-svg.svg" alt="icona home" class="home-icon">
             </a>
         </div>
         <a href="proposte_tecnico">
-            <h3 style="color: #0D99FF; margin-left: 10px;">> Proposte inviate</h3>
+            <h3 style="color: #8a4ecf; margin-left: 10px;">> Proposte inviate</h3>
         </a>
         
-        <h3 style="color: #0D99FF; margin-left: 10px;">> Proposta #${proposta.codice}</h3> 
+        <h3 style="color: #8a4ecf; margin-left: 10px;">> Proposta #${proposta.codice}</h3> 
     </div>
     <div class="container-proposta">
         <div class="container-info-proposta">
@@ -76,7 +76,7 @@
                     <#if proposta.getStatoProposta() == "ACCETTATO">
                     <form action="detailproposta_tecnico?n=${proposta.key}" method="post">
                         <input type="hidden" name="action" value="inviaOrdine">
-                        <button type="submit" class="btn-verde shadow-lg">Invia ordine</button>
+                        <button type="submit" class="btn-blu shadow-lg">Invia ordine</button>
                     </form>
                 </#if>
                 </div>

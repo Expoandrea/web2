@@ -871,15 +871,14 @@ p {
 /* Navigazione */
 .nav-container {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    background-color: transparent;
-    border-radius: 0;
-    box-shadow: none;
+    width: 100%;
+    margin: 0;
     padding: 0;
-    margin-left: auto;
-    margin-bottom: 20px;
-    justify-content: flex-start;
+    box-sizing: border-box;
 }
+
 
 .home-card {
     width: 50px;
@@ -1199,13 +1198,14 @@ p {
     padding: 30px;
     text-align: center;
     box-sizing: border-box;
-    background-color: #90CAF9;
+    background-color: rgba(182, 130, 241, 0.6);
     border-radius: 30px;
 }
 
 .row-tecnico {
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
@@ -1217,20 +1217,21 @@ p {
 }
 
 .form-group-tecnico {
-    width: 75%;
+    width: 100%;
     margin-bottom: 20px;
-    color: #333;
+    color: #000000;
     font-size: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
+
 .form-group-tecnico label {
     text-align: left;
     display: block;
     font-size: 25px;
-    color: #333;
+    color: #000000;
     margin-right: 20px;
 }
 
@@ -1284,7 +1285,7 @@ p {
 }
 
 .darkblue-richiesta-storico{
-    background-color: #2F6690;
+    background-color: #0b3b0e;
     width: auto;
     padding: 10px;
     border-radius: 5px;
@@ -1304,9 +1305,12 @@ p {
 }
 
 .skyblue-richiesta-storico {
-    background-color: #E3F2FD;
+    border: 2px double #3a0a70;
+    border-radius: 10px;
+    background-color: transparent; 
     color: black;
 }
+
 
 .orange-richiesta-storico {
     background-color: #b682f1;
@@ -1366,7 +1370,7 @@ p {
     display: block;
     width: auto;
     padding: 10px;
-    background-color: #1E88E5;
+    background-color: #3a0a70;
     color: white;
     text-align: center;
     font-size: 18px;
@@ -1391,7 +1395,7 @@ p {
 
 
 .btn-blu:hover {
-    background-color: #1976D2;
+    background-color: #8a4ecf;
 }
 
 .btn-verde:hover {
@@ -1417,20 +1421,58 @@ p {
     flex-wrap: wrap;
 }
 
-
-.container-skyblue-proposta, .container-purple-proposta {
+/*
+.container-skyblue-proposta,
+.container-purple-proposta {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     width: 80%;
+    max-width: 800px; 
+    margin: 0 auto; 
     padding: 20px;
     border-radius: 30px;
     text-align: right;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    justify-content: center;
 }
+*/
 
 .container-skyblue-proposta {
-    background-color: #90D5FE;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 20px;
+    border-radius: 30px;
+    text-align: right;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    justify-content: center;
+    background-color: rgba(182, 130, 241, 0.6);
 }
 
 .container-purple-proposta {
-    background-color: #5D54BE;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 80%;
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 20px;
+    border-radius: 30px;
+    text-align: right;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    justify-content: center;
+    background-color: transparent;      
+    border: 2px solid #3a0a70;          
+    border-radius: 30px;
+    padding: 40px;
+    box-sizing: border-box;
 }
 
 .container-skyblue-proposta label {
@@ -1439,7 +1481,7 @@ p {
     display: block;
     font-size: 25px;
     color: #333;
-    margin-right: 150px;
+    margin-right: 50px;
 }
 
 .container-purple-proposta label {
@@ -1447,8 +1489,8 @@ p {
     text-align: right;
     display: block;
     font-size: 25px;
-    color: #ffffff;
-    margin-right: 150px;
+    color: #000000;
+    margin-right: 50px;
 }
 
 .badge-stato {
@@ -1467,9 +1509,11 @@ p {
     width: 100%;
     /*width: 2000px;*/
     max-width: 2000px;
-    background-color: #E6E6E6;
     padding: 20px;
-    border-radius: 5px;
+    border: 2px double #3a0a70;
+    border-radius: 10px;
+    background-color: transparent; 
+    color: black;
     text-align: center;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -1512,7 +1556,7 @@ p {
 .textfield-grey {
     width: 2000px;
     height: auto;
-    background-color: #E6E6E6;
+    background-color: transparent;
     padding: 20px;
     border-radius: 5px;
     text-align: center;
