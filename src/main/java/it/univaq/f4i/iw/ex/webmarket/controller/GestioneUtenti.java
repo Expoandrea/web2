@@ -103,18 +103,8 @@ public class GestioneUtenti extends BaseController {
 
     ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().storeUtente(nuovoUtente);
        try {
-        // Questa poi voglio spostarla ma ora funziona e rimane così 
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.outlook.com"); 
-        props.put("mail.smtp.port", "587"); 
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new javax.mail.PasswordAuthentication("webmarket.univaq@outlook.com", "geagiuliasamanta1");
-            }
-        });
+        // Gestione mail
+        Session session = EmailSender.createMailgunSession();
 
         String subject = "Benvenuto in WebMarket";
         String body = "Ciao e Benvenuto in WebMarket,\n\n" +

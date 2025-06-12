@@ -70,7 +70,7 @@ public class InvioProposta extends BaseController {
 
         String email = richiesta.getUtente().getEmail();
 
-        // ✅ Configurazione Mailgun
+        //  Configurazione Mailgun
         
         Session session = EmailSender.createMailgunSession();
 

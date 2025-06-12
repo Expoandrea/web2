@@ -73,17 +73,8 @@ public class DetailStoricoTecnico extends BaseController {
 
         
         //gestione email
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.outlook.com"); 
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
+        Session session = EmailSender.createMailgunSession();
 
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new javax.mail.PasswordAuthentication("webmarket.univaq@outlook.com", "geagiuliasamanta1");
-            }
-        });
         String text = "Gentile Utente, la informiamo che è stato effettuato un nuovo ordine per la sua proposta numero " + proposta.getCodice() +"\n\n In allegato trova i dettagli del suo ordine.";
         // genero PDF
         String tipo = "OrdineProposta_";
@@ -94,11 +85,9 @@ public class DetailStoricoTecnico extends BaseController {
 
         try {
             EmailSender.createPDF(tipo, messaggio, proposta, codice);
-
-           
             EmailSender.sendEmailWithAttachment(session, email, "Notifica Ordine", text, pdfFilePath);
         } catch (DocumentException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // considera loggare e mostrare messaggio all'utente
         }
 
         response.sendRedirect("storico_tecnico"); 

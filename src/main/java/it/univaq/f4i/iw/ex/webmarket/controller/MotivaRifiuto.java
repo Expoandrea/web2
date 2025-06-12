@@ -40,43 +40,39 @@ public class MotivaRifiuto extends BaseController {
             action_default(request, response, n);
             return; 
         }
-
+    
         PropostaAcquisto proposta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().getPropostaAcquisto(n);
         proposta.setStatoProposta(StatoProposta.RIFIUTATO);
-        
         proposta.setMotivazione(motivazione);
-        
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getPropostaAcquistoDAO().storePropostaAcquisto(proposta);
         
-        
-        //cambio stato richiesta
         RichiestaOrdine richiesta = proposta.getRichiestaOrdine();
         richiesta.setStato(StatoRichiesta.PRESA_IN_CARICO);
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().storeRichiestaOrdine(richiesta);
         
         String email = proposta.getRichiestaOrdine().getTecnico().getEmail();
         String username = proposta.getRichiestaOrdine().getTecnico().getUsername();
-
-        
-        //gestione email
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.outlook.com"); 
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new javax.mail.PasswordAuthentication("webmarket.univaq@outlook.com", "geagiuliasamanta1");
-            }
-        });
-        String text = "Ciao "+username+",\n La informiamo che la sua proposta numero " + proposta.getCodice() +"è stata RIFIUTATA.\n"
-                    + "La preghiamo gentilmente di compilare una nuova proposta.\n\n"+"Saluti,\n"+"Il team WebMarket";
-        
-
-        EmailSender.sendEmail(session, email, "Notifica Proposta", text);
-
-        response.sendRedirect("dettaglio_proposta_ord?n="+n); 
+    
+        try {
+            // Creazione sessione Mailgun
+            Session session = EmailSender.createMailgunSession();
+    
+            String subject = "Notifica Proposta Rifiutata";
+            String body = "Ciao " + username + ",\n\n" +
+                          "La informiamo che la sua proposta numero " + proposta.getCodice() + " è stata RIFIUTATA.\n" +
+                          "La preghiamo gentilmente di compilare una nuova proposta.\n\n" +
+                          "Saluti,\nIl team WebMarket";
+    
+            EmailSender.sendEmail(session, email, subject, body);
+        } catch (Exception e) {
+            // Log dell'errore e gestione eccezione
+            Logger.getLogger(MotivaRifiuto.class.getName()).log(Level.SEVERE, null, e);
+            request.setAttribute("error", "Errore durante l'invio dell'email di notifica.");
+            action_default(request, response, n);
+            return;
+        }
+    
+        response.sendRedirect("dettaglio_proposta_ord?n=" + n);
     }
     
     

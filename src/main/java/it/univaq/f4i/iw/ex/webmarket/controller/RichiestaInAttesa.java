@@ -53,39 +53,38 @@ public class RichiestaInAttesa extends BaseController{
     }
      
      
-     private void action_prendiInCarico(HttpServletRequest request, HttpServletResponse response, int n, int tecnico_id) throws IOException, ServletException, DataException, TemplateManagerException {
+    private void action_prendiInCarico(HttpServletRequest request, HttpServletResponse response, int n, int tecnico_id) throws IOException, ServletException, DataException, TemplateManagerException {
         Utente u = ((ApplicationDataLayer) request.getAttribute("datalayer")).getUtenteDAO().getUtente(tecnico_id);
         
         RichiestaOrdine richiesta = ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().getRichiestaOrdine(n);
         richiesta.setStato(StatoRichiesta.PRESA_IN_CARICO);
         richiesta.setTecnico(u);
         
-        String email = richiesta.getUtente().getEmail();
-        String codice =richiesta.getCodiceRichiesta();
-
         ((ApplicationDataLayer) request.getAttribute("datalayer")).getRichiestaOrdineDAO().storeRichiestaOrdine(richiesta);
         
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.outlook.com"); 
-        props.put("mail.smtp.port", "587"); 
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-
-        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new javax.mail.PasswordAuthentication("webmarket.univaq@outlook.com", "geagiuliasamanta1");
-            }
-        });
-
-        String subject = "Richiesta presa in carico";
-        String body = "Gentile utente, \n\n" +
-                      "La informiamo che la richiesta numero "+ codice +" è stata presa in carico. \n"+
-                      "Cordiali Saluti, \n" +
-                      "Il team di WebMarket";
-        
-        EmailSender.sendEmail(session, email, subject, body);
-        response.sendRedirect("notifiche_tecnico");    
+        String email = richiesta.getUtente().getEmail();
+        String codice = richiesta.getCodiceRichiesta();
+    
+        try {
+            Session session = EmailSender.createMailgunSession();
+    
+            String subject = "Richiesta presa in carico";
+            String body = "Gentile utente,\n\n" +
+                          "La informiamo che la richiesta numero " + codice + " è stata presa in carico.\n\n" +
+                          "Cordiali saluti,\n" +
+                          "Il team di WebMarket";
+    
+            EmailSender.sendEmail(session, email, subject, body);
+        } catch (Exception e) {
+            Logger.getLogger(RichiestaInAttesa.class.getName()).log(Level.SEVERE, null, e);
+            request.setAttribute("error", "Errore durante l'invio dell'email di notifica.");
+            action_default(request, response, n);
+            return;
+        }
+    
+        response.sendRedirect("notifiche_tecnico");
     }
+    
      
 
     @Override
