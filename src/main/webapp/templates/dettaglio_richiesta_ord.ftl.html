@@ -1,19 +1,19 @@
 <div class="container-beige">
     <div class="nav-container">
-        <div class="home-card" style="background-color: #90D5FE;">
+        <div class="home-card" style="background-color: #8a4ecf;">
             <a href="homepageordinante">
                 <img src="images/home-svg.svg" alt="icona home" class="home-icon">
             </a>
         </div>
         <a href="richieste_ordinante">
-            <h3 style="color: #0D99FF; margin-left: 10px;">> Richieste Effettuate</h3>
+            <h3 style="color: #8a4ecf; margin-left: 10px;">> Richieste Effettuate</h3>
         </a>
-        <h3 style="color: #0D99FF; margin-left: 10px;">> Richiesta #${richiesta.codiceRichiesta}</h3> 
+        <h3 style="color: #8a4ecf; margin-left: 10px;">> Richiesta #${richiesta.codiceRichiesta}</h3> 
     </div>
     <div class="container-proposta">
         <div class="container-info-proposta">
             <h1 class="hi-text"> Richiesta #${richiesta.codiceRichiesta}</h1>
-            <div class="badge-stato w-1/5 py-2 px-3 rounded-md text-base font-semibold text-center" data-stato="${richiesta.getStato()}">
+            <div class="badge-stato w-auto py-2 px-3 rounded-md text-base font-semibold text-center" data-stato="${richiesta.getStato()}">
                 ${richiesta.getStato()} </div> 
                 <script src="scripts/dettaglio_richiesta_ord.js"></script>
         </div>
@@ -43,7 +43,7 @@
         <div class="row-tecnico">
             <div class="form-group-tecnico">
                 <label>Proposte:</label>
-                <div class="proposte-container flex flex-wrap justify-center gap-4" id="proposte">
+                <div class="proposte-container flex flex-wrap justify-center gap-4 w-full" id="proposte">
                 <#if proposte??>
                
                 <#list proposte as proposta>
@@ -54,7 +54,7 @@
                 </#if>
             <#if proposte?size = 0 >
                 <div class="proposta-card empty">
-                    Nessuna proposta disponibile.
+                    Nessuna
                 </div>
             </#if>
         </div>

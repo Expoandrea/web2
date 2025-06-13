@@ -9,16 +9,19 @@ function cambiaStatoDettaglioOrdine(statoOrdine) {
 
     switch (statoOrdine) {
         case 'RESPINTO_NON_CONFORME':
-            backgroundColor = '#FFAEAE';
+            backgroundColor = '#aad4fc';
             break;
         case 'RESPINTO_NON_FUNZIONANTE':
-            backgroundColor = '#ffbf70';
+            backgroundColor = '#aad4fc';
             break;
         case 'IN_ATTESA':
-            backgroundColor = '#FFE8A3';
+            backgroundColor = '#83b686';
             break;
         case 'ACCETTATO':
-            backgroundColor = '#AFF4C6';
+            backgroundColor = '#ffc400';
+            break;
+        case 'RIFIUTATO':
+            backgroundColor = '#FFAEAE';
             break;
         default:            
         backgroundColor = "#FFFFFF";
@@ -26,7 +29,7 @@ function cambiaStatoDettaglioOrdine(statoOrdine) {
 
 
 return `
-<div class="badge-statoOrdini w-1/5 py-2 px-3 rounded-md text-base font-semibold text-center" style="background-color: ${backgroundColor};">
+<div class="badge-statoOrdini w-auto py-2 px-3 rounded-md text-base font-semibold text-center" style="background-color: ${backgroundColor};">
   ${statoOrdine}  
 </div> 
 `;

@@ -3,23 +3,23 @@ function cambiaStatoDettaglioProposta(statoProposta) {
 
     switch (statoProposta) {
         case 'RIFIUTATO':
-            backgroundColor = '#FFAEAE'; // red
+            backgroundColor = '#FFAEAE'; 
             break;
         case 'IN_ATTESA':
-            backgroundColor = '#FFE8A3'; // orange
+            backgroundColor = '#83b686'; 
             break;
         case 'ORDINATO':
-            backgroundColor = '#E4CCFF'; 
+            backgroundColor = '#aad4fc'; 
             break;
         case 'ACCETTATO':
-            backgroundColor = '#AFF4C6'; // green
+            backgroundColor = '#ffc400'; 
             break;
         default:            
         backgroundColor = "#FFFFFF";
 }
 return `
 
-            <div class="badge-stato w-1/5 py-2 px-3 rounded-md text-base font-semibold text-center" style="background-color: ${backgroundColor};">
+            <div class="badge-stato w-auto py-2 px-3 rounded-md text-base font-semibold text-center" style="background-color: ${backgroundColor}!important;">
                 ${statoProposta}
             </div> 
 `;

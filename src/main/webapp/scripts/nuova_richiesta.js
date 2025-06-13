@@ -3,26 +3,25 @@
  * @param {string} parentCategoryId - L'ID della categoria principale selezionata.
  */
 function loadSubCategories(parentCategoryId) {
-    console.log("selected: "+parentCategoryId);
-    
+    console.log("selected: " + parentCategoryId);
+
     if (!parentCategoryId) return;
+
     /**
      * Elemento HTML per la categoria scelta.
      * @type {HTMLElement}
      */
     let chosenCategory = document.getElementById("chosen-category");
     chosenCategory.setAttribute("value", parentCategoryId);
-    
-    
+
     /**
      * Contenitore per le sottocategorie.
      * @type {HTMLElement}
      */
     let container = document.getElementById("subcategories-container");
-    
-   
+
     fetch(`nuova_richiesta?n=${parentCategoryId}`)
-            .then(response => {
+        .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -36,10 +35,9 @@ function loadSubCategories(parentCategoryId) {
                  */
                 let selects = document.querySelectorAll('select');
                 selects.forEach(select => {
-                    
-                        select.disabled = true;
-                    
+                    select.disabled = true;
                 });
+
                 /**
                  * Elemento select per le sottocategorie.
                  * @type {HTMLSelectElement}
@@ -47,6 +45,15 @@ function loadSubCategories(parentCategoryId) {
                 let subCategorySelect = document.createElement("select");
                 subCategorySelect.classList.add('standard-select', 'mb-4');
                 subCategorySelect.setAttribute("onchange", "loadSubCategories(this.value)");
+
+                // Colore iniziale
+                subCategorySelect.style.color = "#999";
+                subCategorySelect.style.backgroundColor = "#fff";
+
+                // Cambia colore dopo la selezione
+                subCategorySelect.addEventListener("change", function () {
+                    this.classList.add("select-selected");
+                });
 
                 /**
                  * Opzione predefinita per il select delle sottocategorie.
@@ -69,14 +76,10 @@ function loadSubCategories(parentCategoryId) {
                     subCategorySelect.appendChild(option);
                 });
 
-                
                 container.appendChild(subCategorySelect);
             }
         })
         .catch(error => {
             console.error("Errore nel caricamento delle sottocategorie:", error);
         });
-     
-     
-
 }

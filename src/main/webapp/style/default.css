@@ -513,7 +513,7 @@ homepage admin
 }
 
 .card-4 {
-    background-color:#cdadf3; 
+    background-color:#d2b4f5; 
     transition: transform 0.3s ease; 
 }
 
@@ -721,6 +721,7 @@ p {
     background-color: #ffc400;
     border: none;
     border-radius: 15px;
+    font-size: 14px;
     padding: 10px 30px;
     color: white;
     cursor: pointer;
@@ -796,7 +797,7 @@ p {
 }
 
 .margin-10{
-    margin: 40px;
+    margin: 10px;
 }
 
 
@@ -1265,6 +1266,7 @@ p {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 
@@ -1283,15 +1285,24 @@ p {
 }
 
 .proposta-card {
-    background-color: #E3F2FD; 
-    border: 1px solid #dcdfe6; 
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    width: 200px;
+    flex: 1 1 200px;                  /* Cresce/flette fino a 200px */
+    max-width: 100%;                  /* Non va oltre il contenitore */
+    background-color: #E3F2FD;
+    border: 1px solid #dcdfe6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    /* Evita conflitto tra width fissa e flessibilità */
+    width: auto;                      /* ← cambia da 200px a auto */
+    
     padding: 15px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-left: 10px;
+
+    /* Aggiusta il bordo sinistro: servono tipo e colore */
+    border-left: 10px;  /* ad esempio un azzurro */
+    
+    box-sizing: border-box;           /* fondamentale per calcoli layout */
 }
 
 .proposta-card a {
@@ -1481,11 +1492,10 @@ p {
 */
 
 .container-skyblue-proposta {
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     gap: 20px;
-    width: 80%;
-    max-width: 800px; 
+    max-width: 100%; 
     margin: 0 auto; 
     padding: 20px;
     border-radius: 30px;
@@ -1494,6 +1504,7 @@ p {
     overflow-wrap: break-word;
     justify-content: center;
     background-color: rgba(182, 130, 241, 0.6);
+    vertical-align: top;
 }
 
 .container-purple-proposta {
@@ -1535,15 +1546,17 @@ p {
 }
 
 .badge-stato {
-    background-color: #bdbdbd;
-    width: 20%;
+    display: inline-flex;
+    white-space: nowrap; /* niente ritorno a capo */
     padding: 10px;
+    max-width: none; /* nessun limite alla larghezza */
+    overflow: visible; /* niente tagli */
+    background-color: #bdbdbd;
     border-radius: 5px;
     font-size: 16px;
-    border: none;
     color: black;
     text-align: center;
-    overflow: hidden;
+    padding-right: 15px; /* prova a incrementare */
 }
 
 .grey-row {
@@ -1989,7 +2002,7 @@ p {
 }
 
 .vai-richiesta {
-    background-color: #1E88E5;
+    background-color: #0b3b0e;
     width: auto;
     padding: 10px;
     border-radius: 5px;
@@ -2008,4 +2021,9 @@ p {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
 }
- 
+
+
+.select-selected {
+  background-color: #8a4ecf !important; /* Cambia qui il colore che vuoi */
+  color: white !important;
+}

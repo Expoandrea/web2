@@ -3,23 +3,23 @@ function cambiaStatoDettaglioRichiesta(statoRichiesta) {
 
     switch (statoRichiesta) {
         case 'IN_ATTESA':
-            backgroundColor = '#FFE8A3'; 
+            backgroundColor = '#83b686'; 
             break;
         case 'PRESA_IN_CARICO':
-            backgroundColor = '#ffbf70'; // orange
+            backgroundColor = '#aad4fc'; 
             break;
         case 'RISOLTA':
-            backgroundColor = '#AFF4C6'; // yellow
+            backgroundColor = '#FFAEAE'; 
             break;
         case 'ORDINATA':
-            backgroundColor = '#E4CCFF'; // green
+            backgroundColor = '#ffc400'; 
             break;
         default:            
         backgroundColor = "#FFFFFF";
 }
 return `
 
-            <div class="badge-stato w-1/5 py-2 px-3 rounded-md text-base font-semibold text-center" style="background-color: ${backgroundColor}!important;">
+            <div class="badge-stato w-auto py-2 px-3 rounded-md text-base font-semibold text-center" style="background-color: ${backgroundColor}!important;">
                 ${statoRichiesta}
             </div> 
 `;

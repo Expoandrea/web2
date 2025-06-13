@@ -21,8 +21,8 @@ function getStatoOrdine(statoOrdine) {
             backgroundColor = '#ffc400';
             break;
         case 'RIFIUTATO':
-                backgroundColor = '#FFAEAE'; 
-                break;
+            backgroundColor = '#FFAEAE'; 
+            break;
 
 
         default:            

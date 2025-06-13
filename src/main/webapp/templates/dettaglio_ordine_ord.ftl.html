@@ -1,83 +1,93 @@
-<div class="container-beige px-4 md:px-8 lg:px-16 py-6 bg-beige-50">
-    <div class="nav-container flex items-center space-x-4 mb-6">
-        
-            <div class="home-card flex justify-center items-center bg-indigo-600 p-2">
-                <a href="homepageordinante">
-                <img src="images/home-svg.svg" alt="icona home" class="home-icon w-8 h-8"/>
-                </a>
-            </div>
-                 <a href="ordini">
-                 <h3 class="text-indigo-600 text-lg ml-2 font-semibold">> Ordini</h3>
-                </a>
-                 <h3 class="text-indigo-600 text-lg ml-2 font-semibold">> Ordine del ${ordine.data}</h3> 
+<div class="container-beige mx-auto p-4 md:p-6 lg:p-8">
+  <div class="nav-container flex items-center space-x-2">
+    <div class="home-card flex justify-center items-center" style="background-color:#b682f1;">
+      <a href="homepageordinante">
+        <img src="images/home-svg.svg" alt="icona home" class="home-icon" />
+      </a>
     </div>
 
-    <div class="container-proposta">
-             <div class="container-info-proposta">
-                <h1 class="hi-text"> Ordine </h1>
-                <div class="badge-statoOrdini w-1/5 py-2 px-3 rounded-md text-base font-semibold text-center" data-stato="${ordine.getStato()}" style="display: inline-block; font-weight: bold;">
-                   ${ordine.getStato()} 
-                </div> 
-           <br/>
+    <h3 style="color:#d2b4f5; margin-left: 10px;">
+      <a href="ordini" style="color:#d2b4f5; text-decoration:none;">&gt; Ordini</a>
+    </h3>
+
+    <h3 style="color:#d2b4f5; margin-left: 10px;">
+      &gt; Ordine del ${ordine.data}
+    </h3>
+  </div>
+
+  <div class="container-proposta mt-6">
+    <div class="container-info-proposta">
+      <h1 class="hi-text">Ordine</h1>
+
+      <div
+        class="badge-statoOrdini w-auto py-2 px-3 rounded-md text-base font-semibold text-center"
+        data-stato="${ordine.getStato()}"
+        style="font-weight: bold;"
+      >
+        ${ordine.getStato()}
+      </div>
+    </div>
+
+    <div class="form-group-tecnico flex items-center mt-4">
+      <label class="text-gray-700 italic mr-2">Vai alla Proposta:</label>
+      <a href="dettaglio_proposta_ord?n=${ordine.getProposta().key}">
+        <div
+          id="proposta"
+          class="darkblue-richiesta-storico shadow-lg cursor-pointer"
+        >
+          Proposta #${ordine.getProposta().codice}
         </div>
-
-         
-            <div class="form-group-tecnico flex items-center">
-                <label class="text-gray-700 italic mr-2"> Vai alla Proposta: </label>
-                <a href="dettaglio_proposta_ord?n=${ordine.getProposta().key}">
-                    <div id="proposta" class="darkblue-richiesta-storico shadow-lg">Proposta #${ordine.getProposta().codice}
-                    </div></a>
-            </div>
-          
-
-        <div class="container-skyblue-proposta p-4 shadow-lg">
-            <div class="row-tecnico">
-                <div class="form-group-tecnico">
-                    <label class="block text-gray-700 font-bold">Data Ordine:</label>
-                    <div id="ordine" class="grey-row"> 
-                        ${ordine.data}
-                    </div>
-                </div>
-            </div>
-
-                <div class="row-tecnico">
-                    <div class="form-group-tecnico">
-                  
-                             <label class="block text-gray-700 font-bold">
-                            
-                            Descrizione Proposta:</label>
-                        <div id="descrizione" class="grey-row" > 
-                            <span class="font-bold"> Produttore: </span> ${ordine.getProposta().produttore}
-                            <br/>
-                            <br/>
-                            <span class="font-bold">  Prodotto: </span> ${ordine.getProposta().prodotto}
-                            <br/>
-                            <br/>
-                            <span class="font-bold">Prezzo: </span>€${ordine.getProposta().prezzo}
-                            <br/>
-                            <br/>
-                            <span class="font-bold"> Note: </span> ${ordine.getProposta().note!'Nessuna nota inserita'}
-                        </div>
-                    </div>
-                </div>
+      </a>
     </div>
-        <script src="scripts/dettaglio_ordine_ord.js"></script> 
-            
-            <#if ordine.getStato() == "IN_ATTESA">
-                <div class="flex space-x-4">
-                    <form action="" method="post" class="mb-2">
-                        <input type="hidden" name="action" value="accettaOrdine">
-                        <button type="submit"  class="green-button  hover:bg-green-600 text-white px-4 py-2 rounded-md shadow-lg">ACCETTA</button>
-                    </form>
-                    </#if>
 
-                    <#if ordine.getStato() == "IN_ATTESA">
-                    <div>
-                        <a href="rifiuto_ordine?n=${ordine.key}">
-                            <div class="orange-button hover:bg-orange-600 text-white px-4 py-2 rounded-md shadow-lg">RIFIUTA</div>
-                        </a>
-                    </div>
-                     </#if>
+    <div class="container-skyblue-proposta p-4 shadow-lg mt-6">
+      <div class="row-tecnico">
+        <div class="form-group-tecnico">
+          <label class="block text-gray-700 font-bold">Data Ordine:</label>
+          <div id="ordine" class="grey-row">
+            ${ordine.data}
+          </div>
+        </div>
+      </div>
+
+      <div class="row-tecnico mt-4">
+        <div class="form-group-tecnico">
+          <label class="block text-gray-700 font-bold">Descrizione Proposta:</label>
+          <div id="descrizione" class="grey-row">
+            <span class="font-bold">Produttore:</span> ${ordine.getProposta().produttore}
+            <br /><br />
+            <span class="font-bold">Prodotto:</span> ${ordine.getProposta().prodotto}
+            <br /><br />
+            <span class="font-bold">Prezzo:</span> €${ordine.getProposta().prezzo}
+            <br /><br />
+            <span class="font-bold">Note:</span> ${ordine.getProposta().note!'Nessuna nota inserita'}
+          </div>
+        </div>
+      </div>
     </div>
+
+    <#if ordine.getStato() == "IN_ATTESA">
+      <div class="flex space-x-4 mt-6">
+        <form action="" method="post" class="mb-2">
+          <input type="hidden" name="action" value="accettaOrdine" />
+          <button
+            type="submit"
+            class="purple-button shadow-lg"
+          >
+            ACCETTA
+          </button>
+        </form>
+
+        <a href="rifiuto_ordine?n=${ordine.key}">
+          <div
+            class="orange-button shadow-lg"
+          >
+            RIFIUTA
+          </div>
+        </a>
+      </div>
+    </#if>
+  </div>
 </div>
-</div>
+
+<script src="scripts/dettaglio_ordine_ord.js"></script>
