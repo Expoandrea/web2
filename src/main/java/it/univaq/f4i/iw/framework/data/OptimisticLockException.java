@@ -1,9 +1,6 @@
 package it.univaq.f4i.iw.framework.data;
 
-/**
- *
- * @author giuse
- */
+
 public class OptimisticLockException extends DataException {
 
     private DataItem item;

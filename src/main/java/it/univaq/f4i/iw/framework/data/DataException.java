@@ -1,9 +1,6 @@
 package it.univaq.f4i.iw.framework.data;
 
-/**
- *
- * @author Giuseppe Della Penna
- */
+
 public class DataException extends Exception {
 
     public DataException(String message) {

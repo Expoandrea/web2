@@ -4,10 +4,7 @@ import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Categoria;
 import it.univaq.f4i.iw.framework.data.DataItemImpl;
 
-/**
- *
- * @author user
- */
+
 public class CaratteristicaImpl extends DataItemImpl<Integer> implements Caratteristica{
 
     private int id;

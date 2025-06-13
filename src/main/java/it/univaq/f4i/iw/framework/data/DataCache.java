@@ -3,10 +3,7 @@ package it.univaq.f4i.iw.framework.data;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author Didattica
- */
+
 public class DataCache {
 
     public Map<Class, Map<Object, Object>> cache;

@@ -26,10 +26,7 @@ import javax.servlet.http.HttpSession;
 
 
 
-/**
- *
- * @author jessviozzi
- */
+
 public class GestioneUtenti extends BaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, TemplateManagerException {

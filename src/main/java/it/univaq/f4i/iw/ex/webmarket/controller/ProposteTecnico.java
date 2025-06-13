@@ -13,10 +13,7 @@ import javax.servlet.http.HttpSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Giulia Di Flamminio
- */
+
 public class ProposteTecnico extends BaseController {
 
     private void action_default(HttpServletRequest request, HttpServletResponse response, int user) throws IOException, ServletException, TemplateManagerException, DataException {

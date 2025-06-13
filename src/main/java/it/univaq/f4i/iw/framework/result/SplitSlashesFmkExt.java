@@ -13,10 +13,7 @@ import freemarker.template.TemplateModelException;
 import it.univaq.f4i.iw.framework.security.SecurityHelpers;
 import java.util.List;
 
-/**
- *
- * @author Giuseppe Della Penna
- */
+
 public class SplitSlashesFmkExt implements TemplateMethodModelEx {
 
     @Override

@@ -11,10 +11,7 @@ import it.univaq.f4i.iw.ex.webmarket.data.dao.impl.RichiestaOrdineDAO_MySQL;
 import it.univaq.f4i.iw.ex.webmarket.data.model.Caratteristica;
 import it.univaq.f4i.iw.ex.webmarket.data.model.RichiestaOrdine;
 
-/**
- *
- * @author Giuseppe Della Penna
- */
+
 public class DataLayer implements AutoCloseable {
 
     private final DataSource datasource;

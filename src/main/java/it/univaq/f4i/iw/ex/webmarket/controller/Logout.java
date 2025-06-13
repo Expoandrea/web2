@@ -5,11 +5,7 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-/**
- *
- * @author Ingegneria del Web
- * @version
- */
+
 public class Logout extends BaseController {
 
     private void action_logout(HttpServletRequest request, HttpServletResponse response) throws IOException {

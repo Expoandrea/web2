@@ -1,10 +1,6 @@
 package it.univaq.f4i.iw.framework.data;
 
-/**
- *
- * @author giuse
- * @param <KT> the key type
- */
+
 public interface DataItem<KT> {
 
     KT getKey();

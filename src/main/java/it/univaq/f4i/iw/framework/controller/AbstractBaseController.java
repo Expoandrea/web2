@@ -21,10 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-/**
- *
- * @author Giuseppe Della Penna
- */
+
 public abstract class AbstractBaseController extends HttpServlet {
 
     private DataSource ds;
