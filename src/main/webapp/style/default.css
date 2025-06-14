@@ -1,15 +1,15 @@
 
-body,html {
-    height: 100%;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    font-size: 11pt;
-    font-family: 'Open Sans', sans-serif;
-    background: linear-gradient(to bottom right, #ffffff, #83b686);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 11pt;
+  font-family: 'Open Sans', sans-serif;
+  background: linear-gradient(to bottom right, #ffffff, #83b686);
+  background-attachment: scroll; /* <--- importante */
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 
 textarea{
     padding: 10px;
@@ -1119,7 +1119,7 @@ p {
 }
 
 .card-row-salm {
-    background-color: #1E88E5;
+    background-color: #e6d9fb;
 }
 
 .card-row-orange {
@@ -1141,7 +1141,7 @@ p {
 }
 
 .card-row-salm:hover {
-    background-color:#167bd3;
+    background-color:#d2b4f5;
     color: white;
 }
 
