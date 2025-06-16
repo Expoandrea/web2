@@ -20,10 +20,7 @@ import it.univaq.f4i.iw.framework.data.DataLayer;
 import java.sql.SQLException;
 import javax.sql.DataSource;
 
-/**
- *
- * @author Giuseppe Della Penna
- */
+
 public class ApplicationDataLayer extends DataLayer {
 
     public ApplicationDataLayer(DataSource datasource) throws SQLException {
